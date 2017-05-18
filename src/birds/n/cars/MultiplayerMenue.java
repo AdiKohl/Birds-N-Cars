@@ -28,7 +28,7 @@ public class MultiplayerMenue extends JFrame implements ActionListener {
     private boolean hostActive = false;
 
     private Panel panel;
-    private final TextField textfield = new TextField(0);
+    private final TextField textfield = new TextField("IP: asdfasdfasdf");
     private final JButton buttonHost = new JButton("HOST");
     private final JButton buttonJoin = new JButton("JOIN");
     private final JButton buttonRefresh = new JButton("REFRESH");
@@ -51,6 +51,7 @@ public class MultiplayerMenue extends JFrame implements ActionListener {
         this.panel.add(this.buttonExit);
 
         add(this.panel, BorderLayout.SOUTH);
+        add(this.textfield, BorderLayout.NORTH);
 
         this.buttonHost.addActionListener(e -> onHost());
         this.buttonJoin.addActionListener(e -> onJoin());

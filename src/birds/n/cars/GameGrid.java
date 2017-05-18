@@ -43,7 +43,7 @@ public class GameGrid extends JFrame
      */
     public GameGrid(int height, int width)
     {
-       
+       super("GameGrid");
         field = new Field(height, width);
         
        
@@ -66,7 +66,9 @@ public class GameGrid extends JFrame
         showStatus(step, field);
     }
   
-
+public static void main(String[]args){
+ GameGrid grid = new GameGrid(10,10);
+}
 
     /**
      * Show the current status of the field.

@@ -24,8 +24,13 @@ public class BirdsNCars extends JFrame implements ActionListener{
     
     public BirdsNCars() {
         super("Birds'N'Cars");
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        
+        
         setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
-        setSize(600, 480);
+        
         setResizable(true);
         setLayout(new BorderLayout());
         
@@ -42,7 +47,10 @@ public class BirdsNCars extends JFrame implements ActionListener{
         this.buttonOptions.addActionListener(e -> onOptions());
         this.buttonExit.addActionListener(e -> onExit());
         
-        //pack();
+        this.buttonSingle.setPreferredSize(new Dimension(200,200));
+        
+        pack();
+        setBounds(0,0,screenSize.width/3*2, screenSize.height/3*2);
         
         setVisible(true);
         

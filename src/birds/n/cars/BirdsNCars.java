@@ -62,11 +62,12 @@ public class BirdsNCars extends JFrame implements ActionListener{
     /**
      * @param args the command line arguments
      */
-    
+    /*
     public static void main(String[] args) {
         // TODO code application logic here
         EventQueue.invokeLater(() -> new BirdsNCars());
     }
+*/
     
     
     @Override

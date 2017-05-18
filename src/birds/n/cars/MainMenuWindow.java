@@ -20,6 +20,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
      */
     public MainMenuWindow() {
         initComponents();
+        setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
     }
 
     /**

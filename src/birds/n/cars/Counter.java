@@ -1,0 +1,60 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package birds.n.cars;
+
+/**
+ *
+ * @author Felix
+ */
+public class Counter {
+    // A name for this type of simulation participant
+    private String name;
+    // How many of this type exist in the simulation.
+    private int count;
+
+    /**
+     * Provide a name for one of the simulation types.
+     * @param name  A name, e.g. "Fox".
+     */
+    public Counter(String name)
+    {
+        this.name = name;
+        count = 0;
+    }
+    
+    /**
+     * @return The short description of this type.
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * @return The current count for this type.
+     */
+    public int getCount()
+    {
+        return count;
+    }
+
+    /**
+     * Increment the current count by one.
+     */
+    public void increment()
+    {
+        count++;
+    }
+    
+    /**
+     * Reset the current count to zero.
+     */
+    public void reset()
+    {
+        count = 0;
+    }
+    
+}

@@ -85,7 +85,8 @@ public class BirdsNCars extends JFrame implements ActionListener{
         JOptionPane.showMessageDialog(BirdsNCars.this, "Singleplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }
     public void onMulti(){
-        JOptionPane.showMessageDialog(BirdsNCars.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        //JOptionPane.showMessageDialog(BirdsNCars.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        EventQueue.invokeLater(() -> new MultiplayerMenue());
     }    
     
 }

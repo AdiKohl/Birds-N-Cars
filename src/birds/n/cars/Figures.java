@@ -15,7 +15,7 @@ public class Figures {
     String name;
     boolean [] hitArray;
     int [] position = new int[2];
-    int direction = 1;
+    
     
     public Figures(int size, int xPosition, int yPosition, int direction, String name){
             this.hitArray = new boolean[size];

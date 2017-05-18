@@ -11,6 +11,7 @@ package birds.n.cars;
  */
 public class Figures {
     int size;
+    int direction; //1=north, 2=east, 3=south, 4=west
     String name;
     boolean [] hitArray;
     int [] position = new int[2];

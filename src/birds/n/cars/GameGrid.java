@@ -43,27 +43,27 @@ public class GameGrid extends JFrame
      */
     public GameGrid(int height, int width)
     {
-       super("GameGrid");
-        field = new Field(height, width);
-        
        
+        field = new Field(height, width);
         colors = new LinkedHashMap<>();
 
-        setTitle("Fox and Rabbit Simulation");
+        setTitle("Birds n Cars");
         stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
         population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
         
         setLocation(100, 50);
         
+        
         fieldView = new FieldView(height, width);
-
+        
         Container contents = getContentPane();
         contents.add(stepLabel, BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add(population, BorderLayout.SOUTH);
-        pack();
+        setSize(500, 500);
         setVisible(true);
         showStatus(step, field);
+        
     }
   
 public static void main(String[]args){

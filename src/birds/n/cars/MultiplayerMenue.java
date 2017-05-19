@@ -199,7 +199,7 @@ public class MultiplayerMenue extends javax.swing.JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+        this.setVisible(false);
         
     }//GEN-LAST:event_exitButtonActionPerformed
 

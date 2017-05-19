@@ -154,6 +154,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
         //JOptionPane.showMessageDialog(MainMenuWindow.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
         MultiplayerMenue multiplayerMenue = new MultiplayerMenue();
         multiplayerMenue.setVisible(true);
+        this.setVisible(false);
         
         
     }//GEN-LAST:event_buttonMultiActionPerformed

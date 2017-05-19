@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author Adi
  */
-public class MultiplayerMenue extends JFrame implements ActionListener {
+public class MultiplayerMenue1 extends JFrame implements ActionListener {
 
     private boolean hostActive = false;
 
@@ -34,7 +34,7 @@ public class MultiplayerMenue extends JFrame implements ActionListener {
     private final JButton buttonRefresh = new JButton("REFRESH");
     private final JButton buttonExit = new JButton("EXIT");
 
-    public MultiplayerMenue() {
+    public MultiplayerMenue1() {
         super("Multiplayer");
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -85,14 +85,14 @@ public class MultiplayerMenue extends JFrame implements ActionListener {
     }
 
     public void onHost() {
-        JOptionPane.showMessageDialog(MultiplayerMenue.this, "Options not available yet", "Sorry :(", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MultiplayerMenue1.this, "Options not available yet", "Sorry :(", JOptionPane.WARNING_MESSAGE);
     }
 
     public void onJoin() {
-        JOptionPane.showMessageDialog(MultiplayerMenue.this, "Singleplayer not available yet", "Sorry :(", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MultiplayerMenue1.this, "Singleplayer not available yet", "Sorry :(", JOptionPane.WARNING_MESSAGE);
     }
 
     public void onRefresh() {
-        JOptionPane.showMessageDialog(MultiplayerMenue.this, "Multiplayer not available yet", "Sorry :(", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MultiplayerMenue1.this, "Multiplayer not available yet", "Sorry :(", JOptionPane.WARNING_MESSAGE);
     }
 }

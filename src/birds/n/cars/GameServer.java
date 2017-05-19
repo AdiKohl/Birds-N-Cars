@@ -28,7 +28,7 @@ public class GameServer extends Thread {
     @Override
     public void run() {
         
-        while(MultiplayerMenue.getHostActive()) {
+        while(MultiplayerMenue1.getHostActive()) {
             try {
                 byte[] buf = new byte[256];
                 buf = sessionName.getBytes();

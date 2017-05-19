@@ -42,6 +42,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
         buttonExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         labelBNC.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         labelBNC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -60,7 +61,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
             panelLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLabelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelBNC, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addComponent(labelBNC, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -99,13 +100,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
         panelMainMenuLayout.setHorizontalGroup(
             panelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainMenuLayout.createSequentialGroup()
-                .addContainerGap(350, Short.MAX_VALUE)
+                .addGap(423, 423, 423)
                 .addGroup(panelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(buttonSingle)
                     .addComponent(buttonMulti)
                     .addComponent(buttonOptions)
                     .addComponent(buttonExit))
-                .addGap(334, 334, 334))
+                .addGap(423, 423, 423))
         );
 
         panelMainMenuLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonExit, buttonMulti, buttonOptions, buttonSingle});

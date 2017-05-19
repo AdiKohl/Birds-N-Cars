@@ -201,6 +201,7 @@ public class MultiplayerMenue extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         
+        
     }//GEN-LAST:event_exitButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

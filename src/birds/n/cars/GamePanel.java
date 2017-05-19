@@ -74,6 +74,8 @@ public class GamePanel extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel_Player1.setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy Parking"));
+
         javax.swing.GroupLayout jPanel_Player1Layout = new javax.swing.GroupLayout(jPanel_Player1);
         jPanel_Player1.setLayout(jPanel_Player1Layout);
         jPanel_Player1Layout.setHorizontalGroup(
@@ -82,18 +84,20 @@ public class GamePanel extends javax.swing.JFrame {
         );
         jPanel_Player1Layout.setVerticalGroup(
             jPanel_Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 484, Short.MAX_VALUE)
         );
+
+        jPanel_Player2.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Parking"));
 
         javax.swing.GroupLayout jPanel_Player2Layout = new javax.swing.GroupLayout(jPanel_Player2);
         jPanel_Player2.setLayout(jPanel_Player2Layout);
         jPanel_Player2Layout.setHorizontalGroup(
             jPanel_Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 149, Short.MAX_VALUE)
         );
         jPanel_Player2Layout.setVerticalGroup(
             jPanel_Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
+            .addGap(0, 119, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel_GameLayout = new javax.swing.GroupLayout(jPanel_Game);
@@ -104,15 +108,17 @@ public class GamePanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel_Player2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_GameLayout.setVerticalGroup(
             jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_GameLayout.createSequentialGroup()
+            .addGroup(jPanel_GameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel_Player2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_GameLayout.createSequentialGroup()
+                        .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

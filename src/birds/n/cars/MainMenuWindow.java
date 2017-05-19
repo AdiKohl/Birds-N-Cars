@@ -151,7 +151,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void buttonMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMultiActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainMenuWindow.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        //JOptionPane.showMessageDialog(MainMenuWindow.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        MultiplayerMenue multiplayerMenue = new MultiplayerMenue();
+        multiplayerMenue.setVisible(true);
+        
         
     }//GEN-LAST:event_buttonMultiActionPerformed
 

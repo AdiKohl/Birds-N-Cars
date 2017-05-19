@@ -160,8 +160,9 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void buttonSingleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSingleActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainMenuWindow.this, "Singleplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
-
+        GamePanel gamePanel = new GamePanel();
+        gamePanel.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_buttonSingleActionPerformed
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed

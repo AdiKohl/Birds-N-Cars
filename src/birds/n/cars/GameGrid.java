@@ -26,7 +26,7 @@ public class GameGrid extends JFrame {
 
     private final String STEP_PREFIX = "Playfield: ";
     private JLabel stepLabel;
-    private FieldView fieldView;
+    public FieldView fieldView;
 
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;

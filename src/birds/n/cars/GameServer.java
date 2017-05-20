@@ -19,6 +19,7 @@ public class GameServer extends Thread {
     
     protected DatagramSocket socket = null;
     private final String sessionName;
+    boolean placeholder = true; //placeholder for loop condition
     
     public GameServer(String name) throws IOException {
         super(name);
@@ -28,15 +29,16 @@ public class GameServer extends Thread {
     @Override
     public void run() {
         
-        while(MultiplayerMenue.getHostActive()) {
-            try {
-                byte[] buf = new byte[256];
+        byte[] buf;
+        while(placeholder) {
+            try {                
+                buf = new byte[256];
                 buf = sessionName.getBytes();
                 
                 DatagramPacket packet;
-                InetAddress address = InetAddress.getByName("255.255.255.255");
+                InetAddress group = InetAddress.getByName("224.0.0.0.1");
                 
-                packet = new DatagramPacket(buf, buf.length, address, socket.getPort());
+                packet = new DatagramPacket(buf, buf.length, group, socket.getPort());
                 socket.send(packet);
 
                 try {

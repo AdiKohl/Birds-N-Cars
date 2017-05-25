@@ -77,7 +77,7 @@
               <Font name="Tahoma" size="48" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Multiplayer Menue"/>
+            <Property name="text" type="java.lang.String" value="Multiplayer Menu"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -118,10 +118,10 @@
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextField2" pref="234" max="32767" attributes="0"/>
+                      <Component id="jTextField2" max="32767" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <Component id="joinButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="exitButton" max="32767" attributes="0"/>
+                      <Component id="exitButton" pref="234" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -202,7 +202,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="exitButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="EXIT"/>
+            <Property name="text" type="java.lang.String" value="BACK TO MAIN MENU"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitButtonActionPerformed"/>

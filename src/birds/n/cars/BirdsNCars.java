@@ -17,11 +17,20 @@ import java.awt.event.*;
 
 public class BirdsNCars {
    
+    ParkingLot parking1;
+    ParkingLot parking2;
+    MainWindow menu;
    
     
     public BirdsNCars() {
-        MainWindow menu = new MainWindow();
+        this.menu = new MainWindow();
         menu.setVisible(true);
+        
+        this.parking1 = new ParkingLot();
+        this.parking2 = new ParkingLot();
+        
+        
+        
         
     }
     

@@ -164,6 +164,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
         GamePanel gamePanel = new GamePanel();
         gamePanel.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_buttonSingleActionPerformed
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed

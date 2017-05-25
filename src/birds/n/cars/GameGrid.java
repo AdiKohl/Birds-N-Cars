@@ -46,8 +46,8 @@ public class GameGrid extends JFrame {
         field = new Field(height, width);
         colors = new LinkedHashMap<>();
 
-        setTitle("Birds n Cars");
-        stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
+       stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
+        
 
         setLocation(100, 50);
 
@@ -97,7 +97,6 @@ public class GameGrid extends JFrame {
      */
     public class FieldView extends JPanel {
 
-        private final int GRID_VIEW_SCALING_FACTOR = 6;
 
         private int gridWidth, gridHeight;
         private int xScale, yScale;

@@ -50,7 +50,28 @@ Field[] field2 = new Field[10];
         }
         }
       
-                
+//      buttonMclear.addActionListener(e -> commandIdentifier(e));
+//        
+//        setVisible(true);
+//    }
+//    private void operatorIdentifier(ActionEvent e){
+//        number=0;
+//        char ch = (e.getActionCommand()).charAt(0);
+//                
+//        if(operand2!=0){ //checks if there is already a term ready to be calculated and calculates it to be used as the first operand in the upcoming calculation. -> allows for "chain calculations"
+//            equals();
+//        }
+//        switch(ch){
+//            case '+': operator = 1;
+//            break;
+//            case '-': operator = 2;
+//            break;
+//            case '×': operator = 3;
+//            break;
+//            case '÷': operator = 4;      
+//            break;
+//        }        
+//    }          
          
     }
   

@@ -13,12 +13,12 @@ import java.awt.event.*;
  *
  * @author Adi
  */
-public class MainMenuWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame {
     private GameGrid gameGrid;
     /**
      * Creates new form NewJFrame
      */
-    public MainMenuWindow() {
+    public MainWindow() {
         initComponents();
         setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
     
@@ -447,7 +447,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void buttonMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMultiActionPerformed
         // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(MainMenuWindow.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        //JOptionPane.showMessageDialog(MainWindow.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
         CardLayout card = (CardLayout)mainPanel.getLayout();
         card.show(mainPanel, "multiplayerCard");
         
@@ -464,7 +464,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainMenuWindow.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MainWindow.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_buttonOptionsActionPerformed
 
     private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
@@ -478,17 +478,17 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void mpHostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpHostButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainMenuWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MainWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_mpHostButtonActionPerformed
 
     private void mpJoinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpJoinButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainMenuWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MainWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_mpJoinButtonActionPerformed
 
     private void mpRefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpRefreshButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainMenuWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MainWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_mpRefreshButtonActionPerformed
 
     private void mpBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpBackButtonActionPerformed
@@ -528,13 +528,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(MainMenuWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(MainMenuWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(MainMenuWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MainMenuWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -542,7 +542,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new MainMenuWindow().setVisible(true);
+//                new MainWindow().setVisible(true);
 //            }
 //        });
 //    }

@@ -20,7 +20,7 @@ public class BirdsNCars {
    
     
     public BirdsNCars() {
-        MainMenuWindow menu = new MainMenuWindow();
+        MainWindow menu = new MainWindow();
         menu.setVisible(true);
         
     }

@@ -492,6 +492,7 @@ Field[] field2 = new Field[10];
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed
         // TODO add your handling code here:
+        
         JOptionPane.showMessageDialog(MainWindow.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_buttonOptionsActionPerformed
 

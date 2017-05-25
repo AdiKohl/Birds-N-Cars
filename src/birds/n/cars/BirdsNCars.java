@@ -15,7 +15,7 @@ import java.awt.event.*;
  * @author Team8
  */
 
-public class BirdsNCars  implements BnCInterface {
+public class BirdsNCars {
    
     ParkingLot parking1;
     ParkingLot parking2;
@@ -29,6 +29,10 @@ public class BirdsNCars  implements BnCInterface {
         this.parking1 = new ParkingLot();
         this.parking2 = new ParkingLot();
         
+        parking1.printField();
+        
+        
+        
 //        parking1.shot(5,5);
 //        parking1.placeWreck(1,1);
 //        
@@ -40,11 +44,6 @@ public class BirdsNCars  implements BnCInterface {
 //        }
 //        
 //        System.out.println("");
-        
-
-        
-        
-        
     }
     
     
@@ -58,6 +57,11 @@ public class BirdsNCars  implements BnCInterface {
         EventQueue.invokeLater(() -> new BirdsNCars());
         
 
+    }
+    
+    
+    public void shot(int xpos, int ypos){
+        
     }
 
     

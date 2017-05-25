@@ -31,6 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
                
         for(int i = 0; i < 100; i++){
             jPanel_Player1.add(new JButton());        
+            jPanel_Player2.add(new JButton());        
         }
     }
 
@@ -225,20 +226,10 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jPanel_Player1.setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy Parking"));
-        jPanel_Player1.setLayout(new java.awt.GridLayout(10, 10, 1, 1));
+        jPanel_Player1.setLayout(new java.awt.GridLayout(10, 10));
 
         jPanel_Player2.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Parking"));
-
-        javax.swing.GroupLayout jPanel_Player2Layout = new javax.swing.GroupLayout(jPanel_Player2);
-        jPanel_Player2.setLayout(jPanel_Player2Layout);
-        jPanel_Player2Layout.setHorizontalGroup(
-            jPanel_Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 149, Short.MAX_VALUE)
-        );
-        jPanel_Player2Layout.setVerticalGroup(
-            jPanel_Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 119, Short.MAX_VALUE)
-        );
+        jPanel_Player2.setLayout(new java.awt.GridLayout(10, 10));
 
         spFiguresButton.setText("Figure");
         spFiguresButton.addActionListener(new java.awt.event.ActionListener() {
@@ -253,25 +244,26 @@ public class MainWindow extends javax.swing.JFrame {
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spFiguresButton))
-                .addContainerGap(798, Short.MAX_VALUE))
+                    .addGroup(gamePanelLayout.createSequentialGroup()
+                        .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                        .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gamePanelLayout.createSequentialGroup()
+                        .addComponent(spFiguresButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spFiguresButton)
-                        .addGap(0, 334, Short.MAX_VALUE))
-                    .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spFiguresButton)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout singleplayerPanelLayout = new javax.swing.GroupLayout(singleplayerPanel);

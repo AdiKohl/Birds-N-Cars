@@ -434,8 +434,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void buttonSingleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSingleActionPerformed
         // TODO add your handling code here:
+
         CardLayout card = (CardLayout)mainPanel.getLayout();
         card.show(mainPanel, "singleplayerCard");
+
     }//GEN-LAST:event_buttonSingleActionPerformed
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed

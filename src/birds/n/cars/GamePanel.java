@@ -5,21 +5,27 @@
  */
 package birds.n.cars;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Felix
  */
 public class GamePanel extends javax.swing.JFrame {
+    private GameGrid gameGrid;
 
     /**
      * Creates new form GamePanel
      */
     public GamePanel() {
         initComponents();
-        GameGrid grid1 = new GameGrid(10, 10);
+        gameGrid = new GameGrid(10, 10);
         GameGrid grid2 = new GameGrid(10, 10);
-        jPanel_Player1.add(grid1.fieldView);
+        
+        jPanel_Player1.add(gameGrid.fieldView);
         jPanel_Player2.add(grid2.fieldView);
+        jPanel_Player1.getSize();
         
     }
 
@@ -39,6 +45,12 @@ public class GamePanel extends javax.swing.JFrame {
         jPanel_Game = new javax.swing.JPanel();
         jPanel_Player1 = new javax.swing.JPanel();
         jPanel_Player2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +112,28 @@ public class GamePanel extends javax.swing.JFrame {
             .addGap(0, 119, Short.MAX_VALUE)
         );
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("jButton3");
+
+        jButton4.setText("jButton4");
+
+        jButton5.setText("jButton5");
+
+        jButton6.setText("jButton6");
+
         javax.swing.GroupLayout jPanel_GameLayout = new javax.swing.GroupLayout(jPanel_Game);
         jPanel_Game.setLayout(jPanel_GameLayout);
         jPanel_GameLayout.setHorizontalGroup(
@@ -108,7 +142,14 @@ public class GamePanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_GameLayout.setVerticalGroup(
@@ -118,6 +159,18 @@ public class GamePanel extends javax.swing.JFrame {
                 .addGroup(jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_GameLayout.createSequentialGroup()
                         .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -145,10 +198,25 @@ public class GamePanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_chattextActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         JOptionPane.showMessageDialog(GamePanel.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            Figures car =new Figures(4, 1, 1, 2 , "Test");
+     gameGrid.fieldView.drawMark(1,1,Color.orange);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel_Chate;
     private javax.swing.JPanel jPanel_Game;
     private javax.swing.JPanel jPanel_Player1;

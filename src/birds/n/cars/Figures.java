@@ -15,6 +15,7 @@ public class Figures {
     String name;
     boolean [] hitArray;
     int [] position = new int[2];
+    private Field field;
     
     
     public Figures(int size, int xPosition, int yPosition, int direction, String name){
@@ -23,6 +24,8 @@ public class Figures {
             this.name = name;
             this.position [0] = xPosition;
             this.position [1] = yPosition;
+            field = new Field(1,1);
+            
             
     }
     

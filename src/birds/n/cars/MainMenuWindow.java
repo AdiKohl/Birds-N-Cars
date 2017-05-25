@@ -60,7 +60,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
         gamePanel = new javax.swing.JPanel();
         jPanel_Player1 = new javax.swing.JPanel();
         jPanel_Player2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        spFiguresButton = new javax.swing.JButton();
         multiplayerPanel = new javax.swing.JPanel();
         hostList = new javax.swing.JPanel();
         labelMultiplayerMenu = new javax.swing.JLabel();
@@ -209,9 +209,9 @@ public class MainMenuWindow extends javax.swing.JFrame {
             chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chatPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField_chattext, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
-                    .addComponent(jScrollPane_Chatwindow))
+                .addGroup(chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane_Chatwindow, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_chattext, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         chatPanelLayout.setVerticalGroup(
@@ -250,10 +250,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
             .addGap(0, 119, Short.MAX_VALUE)
         );
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        spFiguresButton.setText("Figure");
+        spFiguresButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                spFiguresButtonActionPerformed(evt);
             }
         });
 
@@ -267,7 +267,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(spFiguresButton))
                 .addContainerGap(336, Short.MAX_VALUE))
         );
         gamePanelLayout.setVerticalGroup(
@@ -278,7 +278,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
                     .addGroup(gamePanelLayout.createSequentialGroup()
                         .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(spFiguresButton)
                         .addGap(0, 334, Short.MAX_VALUE))
                     .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -499,12 +499,12 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mpBackButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void spFiguresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spFiguresButtonActionPerformed
            Figures car =new Figures(4, 1, 1, 2 , "Test");
      gameGrid.fieldView.drawMark(1,1,Color.orange);
      gameGrid.showStatus(2, gameGrid.field);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_spFiguresButtonActionPerformed
 
     public void mainMenuWindowOpenAgain(){
         this.setVisible(true);
@@ -558,7 +558,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel hostList;
     private javax.swing.JTextField ipTextField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel_Player1;
     private javax.swing.JPanel jPanel_Player2;
     private javax.swing.JScrollPane jScrollPane_Chatwindow;
@@ -583,5 +582,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panelMainMenu;
     private javax.swing.JTextField sessionNameTextField;
     private javax.swing.JPanel singleplayerPanel;
+    private javax.swing.JButton spFiguresButton;
     // End of variables declaration//GEN-END:variables
 }

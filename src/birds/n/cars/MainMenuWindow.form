@@ -234,11 +234,11 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextField_chattext" alignment="0" pref="471" max="32767" attributes="0"/>
-                              <Component id="jScrollPane_Chatwindow" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane_Chatwindow" alignment="0" min="-2" pref="471" max="-2" attributes="0"/>
+                              <Component id="jTextField_chattext" alignment="0" min="-2" pref="471" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -289,7 +289,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel_Player2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="spFiguresButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="336" max="32767" attributes="0"/>
                       </Group>
@@ -303,7 +303,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jPanel_Player2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="spFiguresButton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="334" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jPanel_Player1" alignment="0" max="32767" attributes="0"/>
@@ -358,12 +358,12 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="spFiguresButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jButton1"/>
+                    <Property name="text" type="java.lang.String" value="Figure"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="spFiguresButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

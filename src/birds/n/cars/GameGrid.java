@@ -82,7 +82,7 @@ public class GameGrid extends JFrame {
                 Object figures = field.getObjectAt(row, col);
                 if(figures != null) {
                     incrementCount(figures.getClass());
-                    fieldView.drawMark(col, row, getColor(figures.getClass()));
+                    fieldView.drawMark(col, row, Color.ORANGE);
                 }
                 else {
                     fieldView.drawMark(col, row, EMPTY_COLOR);
@@ -115,7 +115,7 @@ public class GameGrid extends JFrame {
     {
         Color col = colors.get(figuresClass);
         if(col == null) {
-            // no color defined for this class
+            // no color defined fss
             return UNKNOWN_COLOR;
         }
         else {

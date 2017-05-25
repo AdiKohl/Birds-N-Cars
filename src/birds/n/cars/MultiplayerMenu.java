@@ -15,12 +15,12 @@ import java.awt.event.*;
  *
  * @author Lucien
  */
-public class MultiplayerMenue extends javax.swing.JFrame {
+public class MultiplayerMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form MultiplayerMenue
      */
-    public MultiplayerMenue() {
+    public MultiplayerMenu() {
         initComponents();
      //   setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
     }
@@ -53,7 +53,7 @@ public class MultiplayerMenue extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Multiplayer Menue");
+        jLabel1.setText("Multiplayer Menu");
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -116,7 +116,7 @@ public class MultiplayerMenue extends javax.swing.JFrame {
             }
         });
 
-        exitButton.setText("EXIT");
+        exitButton.setText("BACK TO MAIN MENU");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
@@ -136,10 +136,10 @@ public class MultiplayerMenue extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(jTextField2)
                     .addComponent(jLabel3)
                     .addComponent(joinButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -184,17 +184,17 @@ public class MultiplayerMenue extends javax.swing.JFrame {
 
     private void hostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MultiplayerMenue.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MultiplayerMenu.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_hostButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MultiplayerMenue.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MultiplayerMenu.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void joinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MultiplayerMenue.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MultiplayerMenu.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_joinButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed

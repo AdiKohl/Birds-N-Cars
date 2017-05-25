@@ -57,6 +57,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
         jTextField_chattext = new javax.swing.JTextField();
         jScrollPane_Chatwindow = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
+        spBackButton = new javax.swing.JButton();
         gamePanel = new javax.swing.JPanel();
         jPanel_Player1 = new javax.swing.JPanel();
         jPanel_Player2 = new javax.swing.JPanel();
@@ -203,6 +204,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
         jScrollPane_Chatwindow.setViewportView(jTextPane1);
 
+        spBackButton.setText("BACK TO MAIN MENU");
+        spBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spBackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout chatPanelLayout = new javax.swing.GroupLayout(chatPanel);
         chatPanel.setLayout(chatPanelLayout);
         chatPanelLayout.setHorizontalGroup(
@@ -212,15 +220,22 @@ public class MainMenuWindow extends javax.swing.JFrame {
                 .addGroup(chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField_chattext, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                     .addComponent(jScrollPane_Chatwindow))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spBackButton)
+                .addContainerGap())
         );
         chatPanelLayout.setVerticalGroup(
             chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chatPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane_Chatwindow, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_chattext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(chatPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(spBackButton))
+                    .addGroup(chatPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane_Chatwindow, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_chattext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -268,7 +283,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,7 +294,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
                         .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
-                        .addGap(0, 334, Short.MAX_VALUE))
+                        .addGap(0, 335, Short.MAX_VALUE))
                     .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -506,6 +521,12 @@ public class MainMenuWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void spBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spBackButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout card = (CardLayout)mainPanel.getLayout();
+        card.show(mainPanel, "mainMenuCard");
+    }//GEN-LAST:event_spBackButtonActionPerformed
+
     public void mainMenuWindowOpenAgain(){
         this.setVisible(true);
     }
@@ -583,5 +604,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panelMainMenu;
     private javax.swing.JTextField sessionNameTextField;
     private javax.swing.JPanel singleplayerPanel;
+    private javax.swing.JButton spBackButton;
     // End of variables declaration//GEN-END:variables
 }

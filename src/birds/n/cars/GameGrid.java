@@ -26,12 +26,13 @@ public class GameGrid extends JFrame {
     private JLabel stepLabel;
     public FieldView fieldView;
        private HashMap<Class, Counter> counters;
+       
 
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
 
-    private Field field;
+    public Field field;
     private int step;
 
     /**

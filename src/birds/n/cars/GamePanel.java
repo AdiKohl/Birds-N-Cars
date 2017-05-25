@@ -203,8 +203,7 @@ public class GamePanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            Figures car =new Figures(4, 1, 1, 2 , "Test");
-     gameGrid.fieldView.drawMark(1,1,Color.orange);
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

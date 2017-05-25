@@ -33,6 +33,8 @@ public class MainMenuWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainPanel = new javax.swing.JPanel();
+        mainMenuPanel = new javax.swing.JPanel();
         panelLabel = new javax.swing.JPanel();
         labelBNC = new javax.swing.JLabel();
         panelMainMenu = new javax.swing.JPanel();
@@ -40,9 +42,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
         buttonMulti = new javax.swing.JButton();
         buttonOptions = new javax.swing.JButton();
         buttonExit = new javax.swing.JButton();
+        singleplayerPanel = new javax.swing.JPanel();
+        multiplayerPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        mainPanel.setLayout(new java.awt.CardLayout());
 
         labelBNC.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         labelBNC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -125,25 +131,78 @@ public class MainMenuWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout mainMenuPanelLayout = new javax.swing.GroupLayout(mainMenuPanel);
+        mainMenuPanel.setLayout(mainMenuPanelLayout);
+        mainMenuPanelLayout.setHorizontalGroup(
+            mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainMenuPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(panelMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        mainMenuPanelLayout.setVerticalGroup(
+            mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainMenuPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(panelMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
+        mainPanel.add(mainMenuPanel, "mainMenuCard");
+
+        singleplayerPanel.setPreferredSize(new java.awt.Dimension(1000, 640));
+
+        javax.swing.GroupLayout singleplayerPanelLayout = new javax.swing.GroupLayout(singleplayerPanel);
+        singleplayerPanel.setLayout(singleplayerPanelLayout);
+        singleplayerPanelLayout.setHorizontalGroup(
+            singleplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        singleplayerPanelLayout.setVerticalGroup(
+            singleplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(singleplayerPanel, "singleplayerCard");
+
+        multiplayerPanel.setPreferredSize(new java.awt.Dimension(1000, 640));
+
+        javax.swing.GroupLayout multiplayerPanelLayout = new javax.swing.GroupLayout(multiplayerPanel);
+        multiplayerPanel.setLayout(multiplayerPanelLayout);
+        multiplayerPanelLayout.setHorizontalGroup(
+            multiplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        multiplayerPanelLayout.setVerticalGroup(
+            multiplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(multiplayerPanel, "multiplayerCard");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,18 +211,16 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private void buttonMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMultiActionPerformed
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(MainMenuWindow.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
-        MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
-        multiplayerMenu.setVisible(true);
-        this.setVisible(false);
+        CardLayout card = (CardLayout)mainPanel.getLayout();
+        card.show(mainPanel, "multiplayerCard");
         
         
     }//GEN-LAST:event_buttonMultiActionPerformed
 
     private void buttonSingleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSingleActionPerformed
         // TODO add your handling code here:
-        GamePanel gamePanel = new GamePanel();
-        gamePanel.setVisible(true);
-        this.setVisible(false);
+        CardLayout card = (CardLayout)mainPanel.getLayout();
+        card.show(mainPanel, "singleplayerCard");
     }//GEN-LAST:event_buttonSingleActionPerformed
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed
@@ -176,6 +233,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_buttonExitActionPerformed
 
+    public void mainMenuWindowOpenAgain(){
+        this.setVisible(true);
+    }
+    
 //    /**
 //     * @param args the command line arguments
 //    */ 
@@ -221,7 +282,11 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JButton buttonOptions;
     private javax.swing.JButton buttonSingle;
     private javax.swing.JLabel labelBNC;
+    private javax.swing.JPanel mainMenuPanel;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel multiplayerPanel;
     private javax.swing.JPanel panelLabel;
     private javax.swing.JPanel panelMainMenu;
+    private javax.swing.JPanel singleplayerPanel;
     // End of variables declaration//GEN-END:variables
 }

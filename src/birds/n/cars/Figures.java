@@ -15,13 +15,12 @@ public class Figures {
     int size;
     int direction; //1=north, 2=east, 3=south, 4=west
     String name;
-    boolean [] hitArray;
+    int shits = 0;
     int [] position = new int[2];
     private Field field;
     
     
     public Figures(int size, int xPosition, int yPosition, int direction, String name){
-            this.hitArray = new boolean[size];
             this.direction = direction;
             this.name = name;
             this.position [0] = xPosition;
@@ -43,8 +42,16 @@ public class Figures {
         return this.name;
     }
     
-    public boolean[] getHitArray(){
-        return this.hitArray;
-    }
+    public boolean destroyed(boolean hit){
+        boolean destroyed = false;
+      
+        if(hit){
+            this.shits++;
+        }
+        if(this.shits==this.size){
+            destroyed = true;
+        }
+        return destroyed;
+}
     
 }

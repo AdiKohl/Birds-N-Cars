@@ -44,7 +44,7 @@ Field[] field2 = new Field[10];
             // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 //Programm schließen
-                   System.out.print(field[i][j].getPosX() );
+                   System.out.print(field[5][5].getPosX() );
             }
         });
         }

@@ -22,7 +22,6 @@ public class MultiplayerMenu extends javax.swing.JFrame {
      */
     public MultiplayerMenu() {
         initComponents();
-        hostButton.setEnabled(false);
      //   setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
     }
 
@@ -185,11 +184,7 @@ public class MultiplayerMenu extends javax.swing.JFrame {
 
     private void hostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostButtonActionPerformed
         // TODO add your handling code here:
-        if(jTextField2.getText().length() >= 4) {
-            hostButton.setEnabled(true);
-        } else {
-            hostButton.setEnabled(false);
-        }
+        JOptionPane.showMessageDialog(MultiplayerMenu.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_hostButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
@@ -204,7 +199,7 @@ public class MultiplayerMenu extends javax.swing.JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MultiplayerMenu.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        this.setVisible(false);
 
         
         

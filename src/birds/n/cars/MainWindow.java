@@ -22,16 +22,16 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
     
-         gameGrid = new GameGrid(10, 10);
-        GameGrid grid2 = new GameGrid(10, 10);
-        
-        jPanel_Player1.add(gameGrid.fieldView);
-        jPanel_Player2.add(grid2.fieldView);
-        jPanel_Player1.getSize();
+//        gameGrid = new GameGrid(10, 10);
+//        GameGrid grid2 = new GameGrid(10, 10);
+//        
+//        jPanel_Player1.add(gameGrid.fieldView);
+//        jPanel_Player2.add(grid2.fieldView);
+//        jPanel_Player1.getSize();
                
-        
-        
-        
+        for(int i = 0; i < 100; i++){
+            jPanel_Player1.add(new JButton());        
+        }
     }
 
     /**
@@ -225,17 +225,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jPanel_Player1.setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy Parking"));
-
-        javax.swing.GroupLayout jPanel_Player1Layout = new javax.swing.GroupLayout(jPanel_Player1);
-        jPanel_Player1.setLayout(jPanel_Player1Layout);
-        jPanel_Player1Layout.setHorizontalGroup(
-            jPanel_Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
-        );
-        jPanel_Player1Layout.setVerticalGroup(
-            jPanel_Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel_Player1.setLayout(new java.awt.GridLayout(10, 10, 1, 1));
 
         jPanel_Player2.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Parking"));
 
@@ -268,7 +258,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spFiguresButton))
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(798, Short.MAX_VALUE))
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,6 +341,12 @@ public class MainWindow extends javax.swing.JFrame {
         labelSessionName.setText("Session Name:");
 
         ipTextField.setEditable(false);
+
+        sessionNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sessionNameTextFieldKeyReleased(evt);
+            }
+        });
 
         mpHostButton.setText("HOST");
         mpHostButton.addActionListener(new java.awt.event.ActionListener() {
@@ -505,6 +501,14 @@ public class MainWindow extends javax.swing.JFrame {
      gameGrid.showStatus(2, gameGrid.field);
         // TODO add your handling code here:
     }//GEN-LAST:event_spFiguresButtonActionPerformed
+
+    private void sessionNameTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sessionNameTextFieldKeyReleased
+        if(sessionNameTextField.getText().length() >= 4) {
+            mpHostButton.setEnabled(true);
+        } else {
+            mpHostButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_sessionNameTextFieldKeyReleased
 
     public void mainMenuWindowOpenAgain(){
         this.setVisible(true);

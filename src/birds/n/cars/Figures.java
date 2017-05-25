@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * You have 10 different types of figures
+ * 1 x bus, size = 4
+ * 2 x van, size = 3
+ * 3 x car, size = 2
+ * 4 x bicycle, size = 1
  */
 package birds.n.cars;
 

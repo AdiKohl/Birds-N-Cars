@@ -13,10 +13,8 @@ import javax.swing.JButton;
 public class Field extends JButton{
     // A random number generator for providing random locations.
     
-    // The depth and width of the field.
-    private int depth, width;
-    // Storage for the animals.
-    private Object[][] field;
+ 
+   
     private int posX;
     private int posY;        
 
@@ -25,9 +23,10 @@ public class Field extends JButton{
      * @param depth The depth of the field.
      * @param width The width of the field.
      */
-    public Field(int posX, int posY)
+    public Field(int posX,int posY)
     {  super();
-     width=60;
+     posX=posX;
+     posY=posY;
        
     }
     
@@ -42,35 +41,7 @@ public class Field extends JButton{
     {   
         return posX;
     }
-    public void clear(Location location)
-    {
-        field[location.getRow()][location.getCol()] = null;
-    }
-    /**
-     * Return the depth of the field.
-     * @return The depth of the field.
-     */
-    public int getDepth()
-    {
-        return depth;
-    }
-        /**
-     * Return the width of the field.
-     * @return The width of the field.
-     */
-    public int getWidth()
-    {
-        return 10;
-    }
+  
     
-      /**
-     * Return the animal at the given location, if any.
-     * @param row The desired row.
-     * @param col The desired column.
-     * @return The animal at the given location, or null if there is none.
-     */
-    public Object getObjectAt(int row, int col)
-    {
-        return field[row][col];
-    }
+     
 }

@@ -15,8 +15,7 @@ import java.awt.event.*;
  */
 public class MainWindow extends javax.swing.JFrame {
     private GameGrid gameGrid;
-    private Field field;
-     private Field field2;
+    
     /**
      * Creates new form NewJFrame
      */
@@ -30,27 +29,31 @@ public class MainWindow extends javax.swing.JFrame {
 //        jPanel_Player1.add(gameGrid.fieldView);
 //        jPanel_Player2.add(grid2.fieldView);
 //        jPanel_Player1.getSize();
+Field[][] field = new Field[10][10];
+Field[] field2 = new Field[10];
                
         for(int i = 0; i < 10; i++){
            for(int j = 0; j < 10; j++){
-               field = new Field(i,j);
-               field2 = new Field(i,j);
-            jPanel_Player1.add(field);        
-            jPanel_Player2.add(field2);        
-        }
-        }
-          field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonMultiActionPerformed(evt);
+               field[i][j] = new Field(i,j);
+               field2[i] = new Field(i,j);
+            jPanel_Player1.add(field[i][j]);        
+            jPanel_Player2.add(field2[i]);   
+            
+                      // ActionListener wird als anonyme Klasse eingebunden
+        field[i][j].addActionListener(new java.awt.event.ActionListener() {
+            // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                //Programm schließen
+                   System.out.print(field[5][5].getPosX() );
             }
         });
-
+        }
+        }
+      
+                
+         
     }
-  private void fieldActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(MainWindow.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
-        System.out.print("test");
-  }
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -6,12 +6,10 @@
 package birds.n.cars;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.util.HashMap;
 import javax.swing.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -27,6 +25,7 @@ public class GameGrid extends JFrame {
     private final String STEP_PREFIX = "Playfield: ";
     private JLabel stepLabel;
     public FieldView fieldView;
+       private HashMap<Class, Counter> counters;
 
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
@@ -64,10 +63,7 @@ public class GameGrid extends JFrame {
         
     }
 
-    public static void main(String[] args) {
-        GameGrid grid = new GameGrid(10, 10);
-        
-    }
+   
 
     /**
      * Show the current status of the field.
@@ -82,13 +78,49 @@ public class GameGrid extends JFrame {
         fieldView.preparePaint();
         for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
-                fieldView.drawMark(col, row, EMPTY_COLOR);
+                Object figures = field.getObjectAt(row, col);
+                if(figures != null) {
+                    incrementCount(figures.getClass());
+                    fieldView.drawMark(col, row, getColor(figures.getClass()));
+                }
+                else {
+                    fieldView.drawMark(col, row, EMPTY_COLOR);
+                }
+                
             }
         }
 
         fieldView.repaint();
     }
-
+        /**
+     * Increment the count for one class of animal.
+     * @param animalClass The class of animal to increment.
+     */
+    public void incrementCount(Class figuresClass)
+    {
+        Counter count = counters.get(figuresClass);
+        if(count == null) {
+            // We do not have a counter for this species yet.
+            // Create one.
+            count = new Counter(figuresClass.getName());
+            counters.put(figuresClass, count);
+        }
+        count.increment();
+    }
+   /**
+     * @return The color to be used for a given class of figures.
+     */
+    private Color getColor(Class figuresClass)
+    {
+        Color col = colors.get(figuresClass);
+        if(col == null) {
+            // no color defined for this class
+            return UNKNOWN_COLOR;
+        }
+        else {
+            return col;
+        }
+    }
     /**
      * Provide a graphical view of a rectangular field. This is a nested class
      * (a class defined inside a class) which defines a custom component for the

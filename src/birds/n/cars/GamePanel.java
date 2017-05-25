@@ -113,8 +113,18 @@ public class GamePanel extends javax.swing.JFrame {
         );
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
 
@@ -188,14 +198,16 @@ public class GamePanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_chattextActionPerformed
 
- private void jButton1Performed(java.awt.event.ActionEvent evt){
-     Figures car =new Figures(4, 1, 1, 2 , "Test");
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         JOptionPane.showMessageDialog(GamePanel.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            Figures car =new Figures(4, 1, 1, 2 , "Test");
      gameGrid.fieldView.drawMark(1,1,Color.orange);
-     
-     
- }
- private void jButton2Performed(java.awt.event.ActionEvent evt){
-   JOptionPane.showMessageDialog(GamePanel.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);}
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

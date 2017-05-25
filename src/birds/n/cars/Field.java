@@ -66,4 +66,14 @@ public class Field {
         return width;
     }
     
+      /**
+     * Return the animal at the given location, if any.
+     * @param row The desired row.
+     * @param col The desired column.
+     * @return The animal at the given location, or null if there is none.
+     */
+    public Object getObjectAt(int row, int col)
+    {
+        return field[row][col];
+    }
 }

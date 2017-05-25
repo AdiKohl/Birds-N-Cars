@@ -46,7 +46,7 @@ public class GameGrid extends JFrame {
         field = new Field(height, width);
         colors = new LinkedHashMap<>();
 
-       stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
+        stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
         
 
         setLocation(100, 50);
@@ -58,7 +58,7 @@ public class GameGrid extends JFrame {
         contents.add(fieldView, BorderLayout.CENTER);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 500);
-        setVisible(true);
+        
         showStatus(step, field);
         
         
@@ -97,6 +97,7 @@ public class GameGrid extends JFrame {
      */
     public class FieldView extends JPanel {
 
+        private final int GRID_VIEW_SCALING_FACTOR = 1;
 
         private int gridWidth, gridHeight;
         private int xScale, yScale;

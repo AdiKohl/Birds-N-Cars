@@ -5,21 +5,25 @@
  */
 package birds.n.cars;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Felix
  */
 public class GamePanel extends javax.swing.JFrame {
+    private GameGrid gameGrid;
 
     /**
      * Creates new form GamePanel
      */
     public GamePanel() {
         initComponents();
-        GameGrid grid1 = new GameGrid(10, 10);
+        gameGrid = new GameGrid(10, 10);
         GameGrid grid2 = new GameGrid(10, 10);
         
-        jPanel_Player1.add(grid1.fieldView);
+        jPanel_Player1.add(gameGrid.fieldView);
         jPanel_Player2.add(grid2.fieldView);
         jPanel_Player1.getSize();
         
@@ -184,7 +188,14 @@ public class GamePanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_chattextActionPerformed
 
-
+ private void jButton1Performed(java.awt.event.ActionEvent evt){
+     Figures car =new Figures(4, 1, 1, 2 , "Test");
+     gameGrid.fieldView.drawMark(1,1,Color.orange);
+     
+     
+ }
+ private void jButton2Performed(java.awt.event.ActionEvent evt){
+   JOptionPane.showMessageDialog(GamePanel.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);}
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

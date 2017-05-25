@@ -25,8 +25,8 @@ public class Field extends JButton{
      */
     public Field(int posX,int posY)
     {  super();
-     posX=posX;
-     posY=posY;
+    this.posX=posX;
+     this.posY=posY;
        
     }
     

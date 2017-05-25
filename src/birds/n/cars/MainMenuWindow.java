@@ -43,11 +43,11 @@ public class MainMenuWindow extends javax.swing.JFrame {
         buttonOptions = new javax.swing.JButton();
         buttonExit = new javax.swing.JButton();
         singleplayerPanel = new javax.swing.JPanel();
-        jPanel_Chate = new javax.swing.JPanel();
+        chatPanel = new javax.swing.JPanel();
         jTextField_chattext = new javax.swing.JTextField();
         jScrollPane_Chatwindow = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jPanel_Game = new javax.swing.JPanel();
+        gamePanel = new javax.swing.JPanel();
         jPanel_Player1 = new javax.swing.JPanel();
         jPanel_Player2 = new javax.swing.JPanel();
         multiplayerPanel = new javax.swing.JPanel();
@@ -181,7 +181,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
         singleplayerPanel.setPreferredSize(new java.awt.Dimension(1000, 640));
 
-        jPanel_Chate.setToolTipText("");
+        chatPanel.setToolTipText("");
 
         jTextField_chattext.setText("jTextField1");
         jTextField_chattext.addActionListener(new java.awt.event.ActionListener() {
@@ -192,20 +192,20 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
         jScrollPane_Chatwindow.setViewportView(jTextPane1);
 
-        javax.swing.GroupLayout jPanel_ChateLayout = new javax.swing.GroupLayout(jPanel_Chate);
-        jPanel_Chate.setLayout(jPanel_ChateLayout);
-        jPanel_ChateLayout.setHorizontalGroup(
-            jPanel_ChateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_ChateLayout.createSequentialGroup()
+        javax.swing.GroupLayout chatPanelLayout = new javax.swing.GroupLayout(chatPanel);
+        chatPanel.setLayout(chatPanelLayout);
+        chatPanelLayout.setHorizontalGroup(
+            chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chatPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel_ChateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField_chattext, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                     .addComponent(jScrollPane_Chatwindow))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel_ChateLayout.setVerticalGroup(
-            jPanel_ChateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ChateLayout.createSequentialGroup()
+        chatPanelLayout.setVerticalGroup(
+            chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chatPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane_Chatwindow, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,23 +239,23 @@ public class MainMenuWindow extends javax.swing.JFrame {
             .addGap(0, 119, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel_GameLayout = new javax.swing.GroupLayout(jPanel_Game);
-        jPanel_Game.setLayout(jPanel_GameLayout);
-        jPanel_GameLayout.setHorizontalGroup(
-            jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_GameLayout.createSequentialGroup()
+        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
+        gamePanel.setLayout(gamePanelLayout);
+        gamePanelLayout.setHorizontalGroup(
+            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gamePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel_GameLayout.setVerticalGroup(
-            jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_GameLayout.createSequentialGroup()
+        gamePanelLayout.setVerticalGroup(
+            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gamePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_GameLayout.createSequentialGroup()
+                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gamePanelLayout.createSequentialGroup()
                         .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 367, Short.MAX_VALUE))
                     .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -266,15 +266,15 @@ public class MainMenuWindow extends javax.swing.JFrame {
         singleplayerPanel.setLayout(singleplayerPanelLayout);
         singleplayerPanelLayout.setHorizontalGroup(
             singleplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_Game, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel_Chate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(chatPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         singleplayerPanelLayout.setVerticalGroup(
             singleplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(singleplayerPanelLayout.createSequentialGroup()
-                .addComponent(jPanel_Game, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel_Chate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(chatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         mainPanel.add(singleplayerPanel, "singleplayerCard");
@@ -469,7 +469,9 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void mpBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpBackButtonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        CardLayout card = (CardLayout)mainPanel.getLayout();
+        card.show(mainPanel, "mainMenuCard");
+        
 
     }//GEN-LAST:event_mpBackButtonActionPerformed
 
@@ -521,10 +523,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JButton buttonMulti;
     private javax.swing.JButton buttonOptions;
     private javax.swing.JButton buttonSingle;
+    private javax.swing.JPanel chatPanel;
+    private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel hostList;
     private javax.swing.JTextField ipTextField;
-    private javax.swing.JPanel jPanel_Chate;
-    private javax.swing.JPanel jPanel_Game;
     private javax.swing.JPanel jPanel_Player1;
     private javax.swing.JPanel jPanel_Player2;
     private javax.swing.JScrollPane jScrollPane_Chatwindow;

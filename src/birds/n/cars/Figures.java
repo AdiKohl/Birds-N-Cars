@@ -42,12 +42,14 @@ public class Figures {
         return this.name;
     }
     
-    public boolean destroyed(boolean hit){
-        boolean destroyed = false;
-      
+    public void setShit(boolean hit){
         if(hit){
             this.shits++;
         }
+    }
+    
+    public boolean isDestroyed(){
+       boolean destroyed = false;
         if(this.shits==this.size){
             destroyed = true;
         }

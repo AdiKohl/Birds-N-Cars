@@ -15,6 +15,8 @@ import java.awt.event.*;
  */
 public class MainWindow extends javax.swing.JFrame {
     private GameGrid gameGrid;
+    private Field field;
+     private Field field2;
     /**
      * Creates new form NewJFrame
      */
@@ -29,12 +31,26 @@ public class MainWindow extends javax.swing.JFrame {
 //        jPanel_Player2.add(grid2.fieldView);
 //        jPanel_Player1.getSize();
                
-        for(int i = 0; i < 100; i++){
-            jPanel_Player1.add(new JButton());        
-            jPanel_Player2.add(new JButton());        
+        for(int i = 0; i < 10; i++){
+           for(int j = 0; j < 10; j++){
+               field = new Field(i,j);
+               field2 = new Field(i,j);
+            jPanel_Player1.add(field);        
+            jPanel_Player2.add(field2);        
         }
-    }
+        }
+          field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMultiActionPerformed(evt);
+            }
+        });
 
+    }
+  private void fieldActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(MainWindow.this, "Multiplayer not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        System.out.print("test");
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

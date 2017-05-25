@@ -4,47 +4,44 @@
  * and open the template in the editor.
  */
 package birds.n.cars;
+import javax.swing.JButton;
 
 /**
  *
  * @author Felix
  */
-public class Field {
+public class Field extends JButton{
     // A random number generator for providing random locations.
     
     // The depth and width of the field.
     private int depth, width;
     // Storage for the animals.
     private Object[][] field;
+    private int posX;
+    private int posY;        
 
     /**
      * Represent a field of the given dimensions.
      * @param depth The depth of the field.
      * @param width The width of the field.
      */
-    public Field(int depth, int width)
-    {
-        this.depth = depth;
-        this.width = width;
-        field = new Object[depth][width];
+    public Field(int posX, int posY)
+    {  super();
+     width=60;
+       
     }
     
     /**
      * Empty the field.
      */
-    public void clear()
-    {
-        for(int row = 0; row < depth; row++) {
-            for(int col = 0; col < width; col++) {
-                field[row][col] = null;
-            }
-        }
+    public int getPosY()
+    {   
+        return posY;
     }
-    
-    /**
-     * Clear the given location.
-     * @param location The location to clear.
-     */
+    public int getPosX()
+    {   
+        return posX;
+    }
     public void clear(Location location)
     {
         field[location.getRow()][location.getCol()] = null;
@@ -63,7 +60,7 @@ public class Field {
      */
     public int getWidth()
     {
-        return width;
+        return 10;
     }
     
       /**

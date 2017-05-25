@@ -43,7 +43,28 @@ public class MainMenuWindow extends javax.swing.JFrame {
         buttonOptions = new javax.swing.JButton();
         buttonExit = new javax.swing.JButton();
         singleplayerPanel = new javax.swing.JPanel();
+        jPanel_Chate = new javax.swing.JPanel();
+        jTextField_chattext = new javax.swing.JTextField();
+        jScrollPane_Chatwindow = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jPanel_Game = new javax.swing.JPanel();
+        jPanel_Player1 = new javax.swing.JPanel();
+        jPanel_Player2 = new javax.swing.JPanel();
         multiplayerPanel = new javax.swing.JPanel();
+        hostList = new javax.swing.JPanel();
+        labelMultiplayerMenu = new javax.swing.JLabel();
+        labelAvailableHosts = new javax.swing.JLabel();
+        namesScrollPane = new javax.swing.JScrollPane();
+        namesList = new javax.swing.JList<>();
+        multiplayerMenu = new javax.swing.JPanel();
+        labelIP = new javax.swing.JLabel();
+        labelSessionName = new javax.swing.JLabel();
+        ipTextField = new javax.swing.JTextField();
+        sessionNameTextField = new javax.swing.JTextField();
+        mpHostButton = new javax.swing.JButton();
+        mpJoinButton = new javax.swing.JButton();
+        mpRefreshButton = new javax.swing.JButton();
+        mpBackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -160,31 +181,225 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
         singleplayerPanel.setPreferredSize(new java.awt.Dimension(1000, 640));
 
+        jPanel_Chate.setToolTipText("");
+
+        jTextField_chattext.setText("jTextField1");
+        jTextField_chattext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_chattextActionPerformed(evt);
+            }
+        });
+
+        jScrollPane_Chatwindow.setViewportView(jTextPane1);
+
+        javax.swing.GroupLayout jPanel_ChateLayout = new javax.swing.GroupLayout(jPanel_Chate);
+        jPanel_Chate.setLayout(jPanel_ChateLayout);
+        jPanel_ChateLayout.setHorizontalGroup(
+            jPanel_ChateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_ChateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_ChateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField_chattext, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                    .addComponent(jScrollPane_Chatwindow))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_ChateLayout.setVerticalGroup(
+            jPanel_ChateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ChateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane_Chatwindow, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_chattext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel_Player1.setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy Parking"));
+
+        javax.swing.GroupLayout jPanel_Player1Layout = new javax.swing.GroupLayout(jPanel_Player1);
+        jPanel_Player1.setLayout(jPanel_Player1Layout);
+        jPanel_Player1Layout.setHorizontalGroup(
+            jPanel_Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 461, Short.MAX_VALUE)
+        );
+        jPanel_Player1Layout.setVerticalGroup(
+            jPanel_Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel_Player2.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Parking"));
+
+        javax.swing.GroupLayout jPanel_Player2Layout = new javax.swing.GroupLayout(jPanel_Player2);
+        jPanel_Player2.setLayout(jPanel_Player2Layout);
+        jPanel_Player2Layout.setHorizontalGroup(
+            jPanel_Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 149, Short.MAX_VALUE)
+        );
+        jPanel_Player2Layout.setVerticalGroup(
+            jPanel_Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 119, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel_GameLayout = new javax.swing.GroupLayout(jPanel_Game);
+        jPanel_Game.setLayout(jPanel_GameLayout);
+        jPanel_GameLayout.setHorizontalGroup(
+            jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_GameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_GameLayout.setVerticalGroup(
+            jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_GameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_GameLayout.createSequentialGroup()
+                        .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 367, Short.MAX_VALUE))
+                    .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout singleplayerPanelLayout = new javax.swing.GroupLayout(singleplayerPanel);
         singleplayerPanel.setLayout(singleplayerPanelLayout);
         singleplayerPanelLayout.setHorizontalGroup(
             singleplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addComponent(jPanel_Game, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_Chate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         singleplayerPanelLayout.setVerticalGroup(
             singleplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(singleplayerPanelLayout.createSequentialGroup()
+                .addComponent(jPanel_Game, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel_Chate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         mainPanel.add(singleplayerPanel, "singleplayerCard");
 
         multiplayerPanel.setPreferredSize(new java.awt.Dimension(1000, 640));
+        multiplayerPanel.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout multiplayerPanelLayout = new javax.swing.GroupLayout(multiplayerPanel);
-        multiplayerPanel.setLayout(multiplayerPanelLayout);
-        multiplayerPanelLayout.setHorizontalGroup(
-            multiplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+        labelMultiplayerMenu.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        labelMultiplayerMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMultiplayerMenu.setText("Multiplayer Menu");
+
+        labelAvailableHosts.setText("Available Hosts:");
+
+        namesList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        namesScrollPane.setViewportView(namesList);
+
+        javax.swing.GroupLayout hostListLayout = new javax.swing.GroupLayout(hostList);
+        hostList.setLayout(hostListLayout);
+        hostListLayout.setHorizontalGroup(
+            hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelMultiplayerMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(hostListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(namesScrollPane)
+                    .addGroup(hostListLayout.createSequentialGroup()
+                        .addComponent(labelAvailableHosts)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        multiplayerPanelLayout.setVerticalGroup(
-            multiplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+        hostListLayout.setVerticalGroup(
+            hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hostListLayout.createSequentialGroup()
+                .addComponent(labelMultiplayerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelAvailableHosts, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(namesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        multiplayerPanel.add(hostList, java.awt.BorderLayout.NORTH);
+
+        multiplayerMenu.setPreferredSize(new java.awt.Dimension(1000, 150));
+
+        labelIP.setText("Your IP:");
+
+        labelSessionName.setText("Session Name:");
+
+        ipTextField.setEditable(false);
+
+        mpHostButton.setText("HOST");
+        mpHostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mpHostButtonActionPerformed(evt);
+            }
+        });
+
+        mpJoinButton.setText("JOIN");
+        mpJoinButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mpJoinButtonActionPerformed(evt);
+            }
+        });
+
+        mpRefreshButton.setText("REFRESH");
+        mpRefreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mpRefreshButtonActionPerformed(evt);
+            }
+        });
+
+        mpBackButton.setText("BACK TO MAIN MENU");
+        mpBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mpBackButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout multiplayerMenuLayout = new javax.swing.GroupLayout(multiplayerMenu);
+        multiplayerMenu.setLayout(multiplayerMenuLayout);
+        multiplayerMenuLayout.setHorizontalGroup(
+            multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(multiplayerMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(mpRefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(mpHostButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ipTextField)
+                    .addComponent(labelIP, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sessionNameTextField)
+                    .addComponent(labelSessionName)
+                    .addComponent(mpJoinButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mpBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        multiplayerMenuLayout.setVerticalGroup(
+            multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(multiplayerMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelIP)
+                    .addComponent(labelSessionName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sessionNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mpHostButton)
+                    .addComponent(mpJoinButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mpRefreshButton)
+                    .addComponent(mpBackButton))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        multiplayerPanel.add(multiplayerMenu, java.awt.BorderLayout.SOUTH);
 
         mainPanel.add(multiplayerPanel, "multiplayerCard");
 
@@ -232,6 +447,31 @@ public class MainMenuWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_buttonExitActionPerformed
+
+    private void jTextField_chattextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_chattextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_chattextActionPerformed
+
+    private void mpHostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpHostButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(MainMenuWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_mpHostButtonActionPerformed
+
+    private void mpJoinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpJoinButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(MainMenuWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_mpJoinButtonActionPerformed
+
+    private void mpRefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpRefreshButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(MainMenuWindow.this, "Not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_mpRefreshButtonActionPerformed
+
+    private void mpBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpBackButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+
+    }//GEN-LAST:event_mpBackButtonActionPerformed
 
     public void mainMenuWindowOpenAgain(){
         this.setVisible(true);
@@ -281,12 +521,33 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JButton buttonMulti;
     private javax.swing.JButton buttonOptions;
     private javax.swing.JButton buttonSingle;
+    private javax.swing.JPanel hostList;
+    private javax.swing.JTextField ipTextField;
+    private javax.swing.JPanel jPanel_Chate;
+    private javax.swing.JPanel jPanel_Game;
+    private javax.swing.JPanel jPanel_Player1;
+    private javax.swing.JPanel jPanel_Player2;
+    private javax.swing.JScrollPane jScrollPane_Chatwindow;
+    private javax.swing.JTextField jTextField_chattext;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel labelAvailableHosts;
     private javax.swing.JLabel labelBNC;
+    private javax.swing.JLabel labelIP;
+    private javax.swing.JLabel labelMultiplayerMenu;
+    private javax.swing.JLabel labelSessionName;
     private javax.swing.JPanel mainMenuPanel;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JButton mpBackButton;
+    private javax.swing.JButton mpHostButton;
+    private javax.swing.JButton mpJoinButton;
+    private javax.swing.JButton mpRefreshButton;
+    private javax.swing.JPanel multiplayerMenu;
     private javax.swing.JPanel multiplayerPanel;
+    private javax.swing.JList<String> namesList;
+    private javax.swing.JScrollPane namesScrollPane;
     private javax.swing.JPanel panelLabel;
     private javax.swing.JPanel panelMainMenu;
+    private javax.swing.JTextField sessionNameTextField;
     private javax.swing.JPanel singleplayerPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,7 +24,7 @@ public class Field extends JButton{
      * @param width The width of the field.
      */
     public Field(int posX,int posY)
-    {  super("b");
+    {  super("");
     this.posX=posX;
      this.posY=posY;
        

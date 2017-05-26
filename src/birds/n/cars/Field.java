@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package birds.n.cars;
+import java.awt.Color;
 import javax.swing.JButton;
 
 /**
@@ -27,7 +28,7 @@ public class Field extends JButton{
     {  super("");
     this.posX=posX;
      this.posY=posY;
-       
+     super.setBackground(Color.GRAY);
     }
     
     /**
@@ -42,6 +43,8 @@ public class Field extends JButton{
         return posX;
     }
   
-    
+    public void setSchip(){
+    ;
+    }
      
 }

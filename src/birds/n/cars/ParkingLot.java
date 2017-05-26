@@ -48,6 +48,17 @@ public class ParkingLot {
     public void placeWreck(int xpos, int ypos){
         field[xpos][ypos] = 3;
     }
+    
+    public void printField(){
+        for(int i=0; i<=9; i++){
+            for(int j=0;j<=9;j++){
+                System.out.print(field[i][j]);                
+            }
+            System.out.println("");
+        }
+        
+        System.out.println("");
+    }
 
 
 }

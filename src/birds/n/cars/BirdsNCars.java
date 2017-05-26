@@ -22,16 +22,28 @@ public class BirdsNCars {
     MainWindow menu;
    
     
-    public BirdsNCars() {
+    public BirdsNCars(){
         this.menu = new MainWindow();
         menu.setVisible(true);
         
         this.parking1 = new ParkingLot();
         this.parking2 = new ParkingLot();
         
+        parking1.printField();
         
         
         
+//        parking1.shot(5,5);
+//        parking1.placeWreck(1,1);
+//        
+//        for(int i=0; i<=9; i++){
+//            for(int j=0;j<=9;j++){
+//                System.out.print(parking1.field[i][j]);                
+//            }
+//            System.out.println("");
+//        }
+//        
+//        System.out.println("");
     }
     
     
@@ -43,6 +55,13 @@ public class BirdsNCars {
     public static void main(String[] args) {
         // TODO code application logic here
         EventQueue.invokeLater(() -> new BirdsNCars());
+        
+
+    }
+    
+    
+    public void shot(int xpos, int ypos){
+        
     }
 
     

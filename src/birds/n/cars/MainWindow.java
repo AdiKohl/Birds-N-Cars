@@ -43,6 +43,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             jPanel_Player1.add(field);        
             jPanel_Player2.add(field2);   
             
+
             
             field.setActionCommand(i+","+j);
             field2.setActionCommand(i+","+j);
@@ -59,6 +60,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
 //                   System.out.print(field[i][j].getPosX() );
 //            }
 //        });
+
+
         }
         }
              
@@ -484,6 +487,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed
         // TODO add your handling code here:
+        
         JOptionPane.showMessageDialog(MainWindow.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_buttonOptionsActionPerformed
 

@@ -7,13 +7,14 @@ package birds.n.cars;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author Adi
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private GameGrid gameGrid;
     
     /**
@@ -29,52 +30,43 @@ public class MainWindow extends javax.swing.JFrame {
 //        jPanel_Player1.add(gameGrid.fieldView);
 //        jPanel_Player2.add(grid2.fieldView);
 //        jPanel_Player1.getSize();
-Field[][] field = new Field[10][10];
-Field[] field2 = new Field[10];
-               
+//Field[][] field = new Field[10][10];
+//Field[] field2 = new Field[10];
+     Field field;
+     Field field2;
+
+
         for(int i = 0; i < 10; i++){
            for(int j = 0; j < 10; j++){
-               field[i][j] = new Field(i,j);
-               field2[i] = new Field(i,j);
-            jPanel_Player1.add(field[i][j]);        
-            jPanel_Player2.add(field2[i]);   
+               field = new Field(i,j);
+               field2 = new Field(i,j);
+            jPanel_Player1.add(field);        
+            jPanel_Player2.add(field2);   
             
-                      // ActionListener wird als anonyme Klasse eingebunden
-        field[i][j].addActionListener(new java.awt.event.ActionListener() {
-            // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                //Programm schließen
-                   System.out.print(field[i][j].getPosX() );
-            }
-        });
-        }
-        }
-      
-//      buttonMclear.addActionListener(e -> commandIdentifier(e));
-//        
-//        setVisible(true);
-//    }
-//    private void operatorIdentifier(ActionEvent e){
-//        number=0;
-//        char ch = (e.getActionCommand()).charAt(0);
-//                
-//        if(operand2!=0){ //checks if there is already a term ready to be calculated and calculates it to be used as the first operand in the upcoming calculation. -> allows for "chain calculations"
-//            equals();
-//        }
-//        switch(ch){
-//            case '+': operator = 1;
-//            break;
-//            case '-': operator = 2;
-//            break;
-//            case '×': operator = 3;
-//            break;
-//            case '÷': operator = 4;      
-//            break;
-//        }        
-//    }          
+            
+            field.setActionCommand(i+","+j);
+            field2.setActionCommand(i+","+j);
+            
+            field2.addActionListener(this);
+            field.addActionListener(this);
+            
          
+//                      // ActionListener wird als anonyme Klasse eingebunden
+//        field[i][j].addActionListener(new java.awt.event.ActionListener() {
+//            // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
+//            public void actionPerformed(java.awt.event.ActionEvent e) {
+//                //Programm schließen
+//                   System.out.print(field[i][j].getPosX() );
+//            }
+//        });
+        }
+        }
+             
     }
-  
+       private void operatorIdentifier(ActionEvent e){
+       
+        ;
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -620,4 +612,16 @@ Field[] field2 = new Field[10];
     private javax.swing.JPanel singleplayerPanel;
     private javax.swing.JButton spFiguresButton;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+         String ch = (e.getActionCommand());
+                 
+      
+    }
+    
+//    public String getPos(){
+//    return ch;
+//    }
+            
 }

@@ -19,7 +19,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private GameGrid gameGrid;
     private ParkingLot p1;
     private ParkingLot p2;
-    public    Field [][] pos = new Field[10][];
+    public    Field [][] pos = new Field[11][11];
     
     /**
      * Creates new form NewJFrame
@@ -56,10 +56,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             
             field2.addActionListener(e -> buttonPressField2(e));
             field1.addActionListener(e -> buttonPressField1(e));
-          pos[i][j].add(field1);
+          pos[i][j]=field1;  
         }
         }
-             
+           
     }
        private void operatorIdentifier(ActionEvent e){
        
@@ -619,13 +619,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
        System.out.println(ch);
        p1.shot(Character.getNumericValue(ch.charAt(0)),Character.getNumericValue(ch.charAt(2)));
        p1.printField();
-      
+      pos[Character.getNumericValue(ch.charAt(0))][Character.getNumericValue(ch.charAt(2))].setBackground(Color.red);
     }
     public void buttonPressField2(ActionEvent e) {
          String ch = (e.getActionCommand());
        System.out.println(ch);
        p2.shot(Character.getNumericValue(ch.charAt(0)),Character.getNumericValue(ch.charAt(2)));
        p2.printField();
+       
+       
       
     }
     

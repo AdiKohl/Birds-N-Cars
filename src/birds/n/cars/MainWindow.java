@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 /**
  *
  * @author Adi
@@ -18,6 +19,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private GameGrid gameGrid;
     private ParkingLot p1;
     private ParkingLot p2;
+    public    Field [][] pos = new Field[10][];
     
     /**
      * Creates new form NewJFrame
@@ -25,7 +27,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     public MainWindow(ParkingLot p1, ParkingLot p2) {
         this.p1=p1;
         this.p2=p2;
-        
+      
         initComponents();
         setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
     
@@ -54,7 +56,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             
             field2.addActionListener(e -> buttonPressField2(e));
             field1.addActionListener(e -> buttonPressField1(e));
-         
+          pos[i][j].add(field1);
         }
         }
              

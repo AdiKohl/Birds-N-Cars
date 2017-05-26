@@ -20,7 +20,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     /**
      * Creates new form NewJFrame
      */
-    public MainWindow() {
+    public MainWindow(ParkingLot p1, ParkingLot p2) {
         initComponents();
         setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
     

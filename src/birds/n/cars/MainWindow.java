@@ -44,24 +44,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             jPanel_Player2.add(field2);   
             
 
-            
             field.setActionCommand(i+","+j);
             field2.setActionCommand(i+","+j);
             
             field2.addActionListener(this);
-            field.addActionListener(this);
-            
+        field.addActionListener(this);
          
-//                      // ActionListener wird als anonyme Klasse eingebunden
-//        field[i][j].addActionListener(new java.awt.event.ActionListener() {
-//            // Beim Drücken des Menüpunktes wird actionPerformed aufgerufen
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                //Programm schließen
-//                   System.out.print(field[i][j].getPosX() );
-//            }
-//        });
-
-
         }
         }
              
@@ -620,7 +608,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     @Override
     public void actionPerformed(ActionEvent e) {
          String ch = (e.getActionCommand());
-                 
+       System.out.println(ch);          
       
     }
     

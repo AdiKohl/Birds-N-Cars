@@ -23,11 +23,13 @@ public class BirdsNCars {
    
     
     public BirdsNCars(){
-        this.menu = new MainWindow();
-        menu.setVisible(true);
+
         
         this.parking1 = new ParkingLot();
         this.parking2 = new ParkingLot();
+        
+        this.menu = new MainWindow(parking1, parking2);
+        menu.setVisible(true);
         
         parking1.printField();
         

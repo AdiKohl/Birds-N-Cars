@@ -16,11 +16,16 @@ import java.awt.event.ActionListener;
  */
 public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private GameGrid gameGrid;
+    private ParkingLot p1;
+    private ParkingLot p2;
     
     /**
      * Creates new form NewJFrame
      */
     public MainWindow(ParkingLot p1, ParkingLot p2) {
+        this.p1=p1;
+        this.p2=p2;
+        
         initComponents();
         setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
     
@@ -475,7 +480,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed
         // TODO add your handling code here:
-        
+        p1.field[3][3] = 4;
+        p1.printField();
         JOptionPane.showMessageDialog(MainWindow.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_buttonOptionsActionPerformed
 

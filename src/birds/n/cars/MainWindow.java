@@ -35,25 +35,25 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
 //        jPanel_Player1.add(gameGrid.fieldView);
 //        jPanel_Player2.add(grid2.fieldView);
 //        jPanel_Player1.getSize();
-//Field[][] field = new Field[10][10];
+//Field[][] field1 = new Field[10][10];
 //Field[] field2 = new Field[10];
-     Field field;
+     Field field1;
      Field field2;
 
 
         for(int i = 0; i < 10; i++){
            for(int j = 0; j < 10; j++){
-               field = new Field(i,j);
+               field1 = new Field(i,j);
                field2 = new Field(i,j);
-            jPanel_Player1.add(field);        
+            jPanel_Player1.add(field1);        
             jPanel_Player2.add(field2);   
             
 
-            field.setActionCommand(i+","+j);
+            field1.setActionCommand(i+","+j);
             field2.setActionCommand(i+","+j);
             
-            field2.addActionListener(this);
-        field.addActionListener(this);
+            field2.addActionListener(e -> buttonPressField2(e));
+            field1.addActionListener(e -> buttonPressField1(e));
          
         }
         }
@@ -611,15 +611,31 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private javax.swing.JButton spFiguresButton;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    
+    public void buttonPressField1(ActionEvent e) {
          String ch = (e.getActionCommand());
-       System.out.println(ch);          
+       System.out.println(ch);
+       p1.shot(Character.getNumericValue(ch.charAt(0)),Character.getNumericValue(ch.charAt(2)));
+       p1.printField();
       
     }
+    public void buttonPressField2(ActionEvent e) {
+         String ch = (e.getActionCommand());
+       System.out.println(ch);
+       p2.shot(Character.getNumericValue(ch.charAt(0)),Character.getNumericValue(ch.charAt(2)));
+       p2.printField();
+      
+    }
+    
+        
     
 //    public String getPos(){
 //    return ch;
 //    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
             
 }

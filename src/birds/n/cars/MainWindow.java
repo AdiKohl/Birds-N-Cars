@@ -699,6 +699,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             unlockAllFields(pos1);
             readyButton.setEnabled(false);
             sender.sendData(ipAddressInput.getText(), p2);  //debug
+            updateFields(p2, pos2);
         }
     }//GEN-LAST:event_readyButtonActionPerformed
 

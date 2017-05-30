@@ -25,7 +25,7 @@ public class Sender {
     }
     
     /**
-     *
+     * Serializes and sends a ParkingLot instance to the specified IP address
      * @param address host address to send to
      * @param content the ParkingLot object that is to be sent
      */

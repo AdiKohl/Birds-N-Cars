@@ -44,7 +44,13 @@ public class Receiver implements Runnable{
     public void run() {
         while (true) {            
                 
-                px = new ParkingLot();
+                if(initDone) {  //replaces ParkingLot object with modified version of it self
+                    px = p2;
+                } else {
+                    px = p1;
+                    initDone = true;
+                }
+                
                 byte[] arrayData;
                 
             try {    
@@ -52,14 +58,9 @@ public class Receiver implements Runnable{
                 socket.receive(packet);
                 System.out.println("packet received"); //debug
                 ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(arrayData));
-                px.readExternal(objectInputStream);
+                px.readExternal(objectInputStream);                
                 
-                if(initDone) {  //replaces ParkingLot object with modiefied version of it self
-                    p2 = px;
-                } else {
-                    p1 = px;
-                    initDone = true;
-                }
+                px.printField(); //debug
             } catch(IOException | ClassNotFoundException e) {
                 System.err.println("Error: " + e.getMessage());
             }

@@ -699,7 +699,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             unlockAllFields(pos1);
             readyButton.setEnabled(false);
             sender.sendData(ipAddressInput.getText(), p2);  //debug
-            updateFields(p2, pos2);
+            updateFieldsFriendly(p2, pos2);
         }
     }//GEN-LAST:event_readyButtonActionPerformed
 
@@ -848,7 +848,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         p1.printField();    //for debugging
         pos1[x][y].setEnabled(false);
         
-        updateFields(p1, pos1);
+        updateFieldsFriendly(p1, pos1);
         sender.sendData(ipAddressInput.getText(), p1);  //debug
     }
 
@@ -867,7 +867,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         } else {
             p2.placeEmpty(x, y);
         }
-        updateFields(p2, pos2);
+        updateFieldsFriendly(p2, pos2);
         findBlocks();
         checkProgress();
         updateProgress();
@@ -880,7 +880,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         }
     }
     
-    private void updateFields(ParkingLot p, Field[][] pos) {
+    private void updateFieldsFriendly(ParkingLot p, Field[][] pos) {
     int a = 0;    
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {

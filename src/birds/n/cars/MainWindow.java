@@ -62,6 +62,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         fXS2 = new Figure(1);        
         
         receiver = new Receiver(portNr, p1, p2);
+        Thread t = new Thread(receiver);
+        t.start();        
         sender = new Sender(portNr);
         
         for(int i = 0; i < 10; i++){
@@ -708,6 +710,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private void mpDirectConnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpDirectConnectButtonActionPerformed
         if(validateIP(ipAddressInput.getText())) {
             sender.sendData(ipAddressInput.getText(), p2);
+            System.out.println(ipAddressInput.getText()); //debug
         } else {
             JOptionPane.showMessageDialog(MainWindow.this, "Invalid IP Address", "Incompetence Error",JOptionPane.WARNING_MESSAGE);
         }

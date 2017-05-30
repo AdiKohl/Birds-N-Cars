@@ -56,6 +56,7 @@ public class Receiver implements Runnable{
             try {    
                 packet = new DatagramPacket(arrayData = new byte[1024], arrayData.length);
                 socket.receive(packet);
+                System.out.println("packet received"); //debug
                 ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(arrayData));
                 px.readExternal(objectInputStream);
             } catch(IOException | ClassNotFoundException e) {

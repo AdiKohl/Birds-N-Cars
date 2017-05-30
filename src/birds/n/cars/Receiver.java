@@ -5,14 +5,18 @@
  */
 package birds.n.cars;
 
+import java.awt.CardLayout;
 import java.net.*;
 import java.io.*;
+import javax.swing.JPanel;
 
 /**
  *
  * @author BlackBox
  */
 public class Receiver implements Runnable{
+    JPanel p;
+    
     DatagramPacket packet;
     DatagramSocket socket;
     
@@ -20,6 +24,8 @@ public class Receiver implements Runnable{
     ParkingLot p2;
     ParkingLot px;
     
+    int port;
+    boolean invitationPending = false;    
     boolean initDone = false;   //used to determine which ParkingLot object is used. Switches after the first transmission is received.
     
     
@@ -28,8 +34,11 @@ public class Receiver implements Runnable{
      * @param portNumber the port this socket is listening to
      * @param p1
      * @param p2
+     * @param panel
      */
-    public Receiver(int portNumber, ParkingLot p1, ParkingLot p2) {
+    public Receiver(int portNumber, ParkingLot p1, ParkingLot p2, JPanel panel) {
+        p = panel;
+        port = portNumber;
         this.p1 = p1;
         this.p2 = p2;
         
@@ -41,21 +50,38 @@ public class Receiver implements Runnable{
     }
     
     @Override
-    public void run() {
+    public void run() { //very gud programming incoming
         while (true) {            
                 
                 if(initDone) {  //replaces ParkingLot object with modified version of it self
                     px = p2;
                 } else {
-                    px = p1;
-                    initDone = true;
+                    px = p1;                    
                 }
                 
                 byte[] arrayData;
                 
-            try {    
+            try {    //TODO rework connection procedure logic thingy
                 packet = new DatagramPacket(arrayData = new byte[1024], arrayData.length);
                 socket.receive(packet);
+                if (!initDone && invitationPending) {
+                    gotoPlayField();
+                    initDone = true;
+                    invitationPending = false;
+                    continue;                    
+                } else if (!initDone) {
+                    int response = MainWindow.connectDialog(packet.getAddress().getCanonicalHostName() + " (" + packet.getAddress().getHostAddress() + ")");
+                    if (response == 0) {
+                        Sender s = new Sender(port);
+                        ParkingLot dummy = new ParkingLot();
+                        s.sendData(packet.getAddress().getHostAddress(), dummy);
+                        gotoPlayField();
+                        initDone = true;
+                        
+                    } else { // if user declines -> response == 1
+                        continue;
+                    }
+                }
                 System.out.println("packet received"); //debug
                 ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(arrayData));
                 px.readExternal(objectInputStream);                
@@ -65,6 +91,15 @@ public class Receiver implements Runnable{
                 System.err.println("Error: " + e.getMessage());
             }
         }
+    }
+    
+    public void setInvitationPendingFlag() {
+        invitationPending = true;
+    }
+    
+    private void gotoPlayField() {
+        CardLayout card = (CardLayout)p.getLayout();
+        card.show(p, "singleplayerCard");
     }
 }
     

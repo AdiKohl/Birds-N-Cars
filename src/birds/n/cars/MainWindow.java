@@ -61,7 +61,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         fXS1 = new Figure(1);
         fXS2 = new Figure(1);        
         
-        receiver = new Receiver(portNr, p1, p2);
+        receiver = new Receiver(portNr, p1, p2, mainPanel);
         Thread t = new Thread(receiver);
         t.start();        
         sender = new Sender(portNr);
@@ -713,8 +713,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
 
     private void mpDirectConnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpDirectConnectButtonActionPerformed
         if(validateIP(ipAddressInput.getText())) {
-            sender.sendData(ipAddressInput.getText(), p2);
-            System.out.println(ipAddressInput.getText()); //debug
+            ParkingLot dummy = new ParkingLot();
+            sender.sendData(ipAddressInput.getText(), dummy);            
         } else {
             JOptionPane.showMessageDialog(MainWindow.this, "Invalid IP Address", "Incompetence Error",JOptionPane.WARNING_MESSAGE);
         }
@@ -1136,6 +1136,17 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
 		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
 		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
         return IPADDRESS_PATTERN.matcher(address).matches();
+    }
+    
+    /**
+     *  opens an option dialog whenever someone tries to connect to the users IP address. User can choose if they want to accept or decline 
+     * @param address the IP address from which the request was received.
+     * @return int value that represents the users choice. 0 = accept, 1 = decline
+     */
+    public static int connectDialog(String address)
+    {        
+        Object[] options = {"Connect", "Cancel"};
+        return JOptionPane.showOptionDialog(null, address + " would you like to play against you!", "A new Challenger appeared", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
     }
 
     @Override

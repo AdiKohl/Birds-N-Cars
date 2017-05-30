@@ -27,7 +27,6 @@ public class BirdsNCars {
         
         this.parking1 = new ParkingLot();
         this.parking2 = new ParkingLot();
-        parking1.placeSplash(1,1);
         
         this.menu = new MainWindow(parking1, parking2);
         menu.setVisible(true);

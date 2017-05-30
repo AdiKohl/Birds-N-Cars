@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package birds.n.cars;
+
 import java.awt.Color;
 import javax.swing.JButton;
 
@@ -11,40 +12,30 @@ import javax.swing.JButton;
  *
  * @author Felix
  */
-public class Field extends JButton{
-    // A random number generator for providing random locations.
+public class Field extends JButton {
     
- 
-   
-    private int posX;
-    private int posY;        
+    private final int posX;
+    private final int posY;
 
     /**
-     * Represent a field of the given dimensions.
-     * @param depth The depth of the field.
-     * @param width The width of the field.
+     * Represent a tile at the given X and Y coordinate.
+     *
+     * @param posX
+     * @param posY
      */
-    public Field(int posX,int posY)
-    {  super("");
-    this.posX=posX;
-     this.posY=posY;
-     super.setBackground(Color.GRAY);
+    public Field(int posX, int posY) {
+        super("");
+        this.posX = posX;
+        this.posY = posY;
+        super.setBackground(Color.LIGHT_GRAY);
+
     }
-    
-    /**
-     * Empty the field.
-     */
-    public int getPosY()
-    {   
+
+    public int getPosY() {
         return posY;
     }
-    public int getPosX()
-    {   
+
+    public int getPosX() {
         return posX;
     }
-  
-    public void setSchip(){
-    ;
-    }
-     
 }

@@ -9,6 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 
 /**
@@ -16,55 +22,73 @@ import java.awt.event.ActionListener;
  * @author Adi
  */
 public class MainWindow extends javax.swing.JFrame implements ActionListener  {
-    private GameGrid gameGrid;
-    private ParkingLot p1;
-    private ParkingLot p2;
-    public    Field [][] pos = new Field[11][11];
-    
+    ParkingLot p1;
+    ParkingLot p2;
+    Field[][] pos1 = new Field[10][10];
+    Field[][] pos2 = new Field[10][10];
+    Field field1;
+    Field field2;
+    ArrayList<Block> blockArray;
+    Figure fXL; 
+    Figure fL;
+    Figure fM;
+    Figure fS1;
+    Figure fS2;
+    Figure fXS1;
+    Figure fXS2;
+    Receiver receiver;
+    Sender sender;
+    boolean readyFlag;
+    final int portNr = 9821;
+        
     /**
      * Creates new form NewJFrame
+     * @param p1 ParkingLot containing array with Field states for opponent
+     * @param p2 ParkingLot containing array with Field states for local player
      */
     public MainWindow(ParkingLot p1, ParkingLot p2) {
+        initComponents();
+        initProgressBars();
+                
         this.p1=p1;
         this.p2=p2;
-      
-        initComponents();
-        setDefaultCloseOperation(/*WindowConstants.*/EXIT_ON_CLOSE);
-    
-//        gameGrid = new GameGrid(10, 10);
-//        GameGrid grid2 = new GameGrid(10, 10);
-//        
-//        jPanel_Player1.add(gameGrid.fieldView);
-//        jPanel_Player2.add(grid2.fieldView);
-//        jPanel_Player1.getSize();
-//Field[][] field1 = new Field[10][10];
-//Field[] field2 = new Field[10];
-     Field field1;
-     Field field2;
-
-
+        
+        fXL = new Figure(5);
+        fL = new Figure(4);
+        fM = new Figure(3);
+        fS1 = new Figure(2);
+        fS2 = new Figure(2);
+        fXS1 = new Figure(1);
+        fXS2 = new Figure(1);        
+        
+        receiver = new Receiver(portNr, p1, p2);
+        sender = new Sender(portNr);
+        
         for(int i = 0; i < 10; i++){
-           for(int j = 0; j < 10; j++){
-               field1 = new Field(i,j);
-               field2 = new Field(i,j);
-            jPanel_Player1.add(field1);        
-            jPanel_Player2.add(field2);   
-            
+            for(int j = 0; j < 10; j++){
+                field1 = new Field(i,j);
+                field2 = new Field(i,j);
+                jPanel_Player1.add(field1);        
+                jPanel_Player2.add(field2);            
 
-            field1.setActionCommand(i+","+j);
-            field2.setActionCommand(i+","+j);
-            
-            field2.addActionListener(e -> buttonPressField2(e));
-            field1.addActionListener(e -> buttonPressField1(e));
-          pos[i][j]=field1;  
+                field1.setActionCommand(i+","+j);
+                field2.setActionCommand(i+","+j);
+
+                field2.addActionListener(e -> buttonPressField2(e));
+                field1.addActionListener(e -> buttonPressField1(e));
+                pos1[i][j]=field1;  
+                pos2[i][j]=field2;
+            }
         }
+        
+        lockAllFields(pos1);
+        try {
+            ipTextField.setText(InetAddress.getLocalHost().getHostAddress());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
     }
-       private void operatorIdentifier(ActionEvent e){
-       
-        ;
-        }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +115,20 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         gamePanel = new javax.swing.JPanel();
         jPanel_Player1 = new javax.swing.JPanel();
         jPanel_Player2 = new javax.swing.JPanel();
-        spFiguresButton = new javax.swing.JButton();
+        fleetPanel = new javax.swing.JPanel();
+        progressM = new javax.swing.JProgressBar();
+        jLabel4 = new javax.swing.JLabel();
+        progressS1 = new javax.swing.JProgressBar();
+        progressXL = new javax.swing.JProgressBar();
+        jLabel5 = new javax.swing.JLabel();
+        progressL = new javax.swing.JProgressBar();
+        progressXS1 = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        progressS2 = new javax.swing.JProgressBar();
+        progressXS2 = new javax.swing.JProgressBar();
+        jLabel3 = new javax.swing.JLabel();
+        readyButton = new javax.swing.JButton();
         multiplayerPanel = new javax.swing.JPanel();
         hostList = new javax.swing.JPanel();
         labelMultiplayerMenu = new javax.swing.JLabel();
@@ -106,6 +143,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         mpHostButton = new javax.swing.JButton();
         mpJoinButton = new javax.swing.JButton();
         mpRefreshButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        mpDirectConnectButton = new javax.swing.JButton();
+        ipAddressInput = new javax.swing.JFormattedTextField();
         mpBackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -261,12 +301,93 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         jPanel_Player2.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Parking"));
         jPanel_Player2.setLayout(new java.awt.GridLayout(10, 10));
 
-        spFiguresButton.setText("Figure");
-        spFiguresButton.addActionListener(new java.awt.event.ActionListener() {
+        fleetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Fleet"));
+        fleetPanel.setForeground(new java.awt.Color(240, 240, 240));
+
+        progressM.setForeground(new java.awt.Color(0, 204, 0));
+
+        jLabel4.setText("Destroyer");
+
+        progressS1.setForeground(new java.awt.Color(0, 204, 0));
+
+        progressXL.setForeground(new java.awt.Color(0, 204, 0));
+
+        jLabel5.setText("Submarine");
+
+        progressL.setForeground(new java.awt.Color(0, 204, 0));
+
+        progressXS1.setForeground(new java.awt.Color(0, 204, 0));
+
+        jLabel1.setText("Aircraft Carrier");
+
+        jLabel2.setText("Battleship");
+
+        progressS2.setForeground(new java.awt.Color(0, 204, 0));
+
+        progressXS2.setForeground(new java.awt.Color(0, 204, 0));
+
+        jLabel3.setText("Cruiser");
+
+        readyButton.setText("Ready!");
+        readyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                spFiguresButtonActionPerformed(evt);
+                readyButtonActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout fleetPanelLayout = new javax.swing.GroupLayout(fleetPanel);
+        fleetPanel.setLayout(fleetPanelLayout);
+        fleetPanelLayout.setHorizontalGroup(
+            fleetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fleetPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fleetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(readyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(progressXL, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(progressL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(progressS1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(progressXS1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressS2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressXS2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+        fleetPanelLayout.setVerticalGroup(
+            fleetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fleetPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progressXL, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progressL, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progressM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progressS1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progressS2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progressXS1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progressXS2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(readyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
@@ -274,27 +395,25 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                        .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addComponent(spFiguresButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(fleetPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel_Player1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel_Player2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spFiguresButton)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(jPanel_Player2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(fleetPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
+
+        fleetPanel.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout singleplayerPanelLayout = new javax.swing.GroupLayout(singleplayerPanel);
         singleplayerPanel.setLayout(singleplayerPanelLayout);
@@ -314,7 +433,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         mainPanel.add(singleplayerPanel, "singleplayerCard");
 
         multiplayerPanel.setPreferredSize(new java.awt.Dimension(1000, 640));
-        multiplayerPanel.setLayout(new java.awt.BorderLayout());
 
         labelMultiplayerMenu.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         labelMultiplayerMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -329,40 +447,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         });
         namesScrollPane.setViewportView(namesList);
 
-        javax.swing.GroupLayout hostListLayout = new javax.swing.GroupLayout(hostList);
-        hostList.setLayout(hostListLayout);
-        hostListLayout.setHorizontalGroup(
-            hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelMultiplayerMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-            .addGroup(hostListLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(namesScrollPane)
-                    .addGroup(hostListLayout.createSequentialGroup()
-                        .addComponent(labelAvailableHosts)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        hostListLayout.setVerticalGroup(
-            hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hostListLayout.createSequentialGroup()
-                .addComponent(labelMultiplayerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelAvailableHosts, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        multiplayerPanel.add(hostList, java.awt.BorderLayout.NORTH);
-
         multiplayerMenu.setPreferredSize(new java.awt.Dimension(1000, 150));
 
         labelIP.setText("Your IP:");
 
-        labelSessionName.setText("Session Name:");
+        labelSessionName.setText("New Session Name:");
 
         ipTextField.setEditable(false);
+        ipTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ipTextField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         sessionNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -391,6 +484,98 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             }
         });
 
+        jLabel6.setText("Direct Connect Address:");
+
+        mpDirectConnectButton.setText("Connect");
+        mpDirectConnectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mpDirectConnectButtonActionPerformed(evt);
+            }
+        });
+
+        try {
+            ipAddressInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###.###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ipAddressInput.setText("000.000.000.000");
+
+        javax.swing.GroupLayout multiplayerMenuLayout = new javax.swing.GroupLayout(multiplayerMenu);
+        multiplayerMenu.setLayout(multiplayerMenuLayout);
+        multiplayerMenuLayout.setHorizontalGroup(
+            multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, multiplayerMenuLayout.createSequentialGroup()
+                .addContainerGap(238, Short.MAX_VALUE)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mpJoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelSessionName)
+                        .addComponent(mpHostButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(sessionNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mpRefreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ipTextField)
+                    .addComponent(labelIP)
+                    .addComponent(jLabel6)
+                    .addComponent(mpDirectConnectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ipAddressInput, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                .addGap(225, 225, 225))
+        );
+        multiplayerMenuLayout.setVerticalGroup(
+            multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(multiplayerMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSessionName)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sessionNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ipAddressInput, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mpHostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mpDirectConnectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mpJoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelIP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(mpRefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(ipTextField))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout hostListLayout = new javax.swing.GroupLayout(hostList);
+        hostList.setLayout(hostListLayout);
+        hostListLayout.setHorizontalGroup(
+            hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelMultiplayerMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hostListLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(multiplayerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(hostListLayout.createSequentialGroup()
+                .addGap(238, 238, 238)
+                .addGroup(hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(namesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAvailableHosts))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        hostListLayout.setVerticalGroup(
+            hostListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hostListLayout.createSequentialGroup()
+                .addComponent(labelMultiplayerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelAvailableHosts, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(namesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(multiplayerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
+        );
+
         mpBackButton.setText("BACK TO MAIN MENU");
         mpBackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,48 +583,26 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             }
         });
 
-        javax.swing.GroupLayout multiplayerMenuLayout = new javax.swing.GroupLayout(multiplayerMenu);
-        multiplayerMenu.setLayout(multiplayerMenuLayout);
-        multiplayerMenuLayout.setHorizontalGroup(
-            multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(multiplayerMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(mpRefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                    .addComponent(mpHostButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ipTextField)
-                    .addComponent(labelIP, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sessionNameTextField)
-                    .addComponent(labelSessionName)
-                    .addComponent(mpJoinButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mpBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
-                .addContainerGap())
+        javax.swing.GroupLayout multiplayerPanelLayout = new javax.swing.GroupLayout(multiplayerPanel);
+        multiplayerPanel.setLayout(multiplayerPanelLayout);
+        multiplayerPanelLayout.setHorizontalGroup(
+            multiplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(multiplayerPanelLayout.createSequentialGroup()
+                .addGroup(multiplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(hostList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(multiplayerPanelLayout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(mpBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        multiplayerMenuLayout.setVerticalGroup(
-            multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(multiplayerMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIP)
-                    .addComponent(labelSessionName))
+        multiplayerPanelLayout.setVerticalGroup(
+            multiplayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(multiplayerPanelLayout.createSequentialGroup()
+                .addComponent(hostList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sessionNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mpHostButton)
-                    .addComponent(mpJoinButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mpRefreshButton)
-                    .addComponent(mpBackButton))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(mpBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
-
-        multiplayerPanel.add(multiplayerMenu, java.awt.BorderLayout.SOUTH);
 
         mainPanel.add(multiplayerPanel, "multiplayerCard");
 
@@ -481,9 +644,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     }//GEN-LAST:event_buttonSingleActionPerformed
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed
-        // TODO add your handling code here:
-        p1.field[3][3] = 4;
-        p1.printField();
+        
         JOptionPane.showMessageDialog(MainWindow.this, "Options not available yet", "Sorry :(",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_buttonOptionsActionPerformed
 
@@ -519,12 +680,22 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
 
     }//GEN-LAST:event_mpBackButtonActionPerformed
 
-    private void spFiguresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spFiguresButtonActionPerformed
-           Figures car =new Figures(4, 1, 1, 2 , "Test");
-     gameGrid.fieldView.drawMark(1,1,Color.orange);
-     gameGrid.showStatus(2, gameGrid.field);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_spFiguresButtonActionPerformed
+    private void readyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readyButtonActionPerformed
+        readyFlag = 
+        fXS1.isReady() &&
+        fXS2.isReady() &&
+        fS1.isReady() &&
+        fS2.isReady() &&
+        fM.isReady() &&
+        fL.isReady() &&
+        fXL.isReady();
+        
+        if(readyFlag) {
+            lockAllFields(pos2);
+            unlockAllFields(pos1);
+            readyButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_readyButtonActionPerformed
 
     private void sessionNameTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sessionNameTextFieldKeyReleased
         if(sessionNameTextField.getText().length() >= 4) {
@@ -533,6 +704,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             mpHostButton.setEnabled(false);
         }
     }//GEN-LAST:event_sessionNameTextFieldKeyReleased
+
+    private void mpDirectConnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpDirectConnectButtonActionPerformed
+        if(validateIP(ipAddressInput.getText())) {
+            sender.sendData(ipAddressInput.getText(), p2);
+        } else {
+            JOptionPane.showMessageDialog(MainWindow.this, "Invalid IP Address", "Incompetence Error",JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_mpDirectConnectButtonActionPerformed
 
     public void mainMenuWindowOpenAgain(){
         this.setVisible(true);
@@ -576,16 +756,24 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
 //    }
  
     
-
+    //<editor-fold defaultstate="collapsed" desc=" Variables declaration">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonMulti;
     private javax.swing.JButton buttonOptions;
     private javax.swing.JButton buttonSingle;
     private javax.swing.JPanel chatPanel;
+    private javax.swing.JPanel fleetPanel;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel hostList;
+    private javax.swing.JFormattedTextField ipAddressInput;
     private javax.swing.JTextField ipTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel_Player1;
     private javax.swing.JPanel jPanel_Player2;
     private javax.swing.JScrollPane jScrollPane_Chatwindow;
@@ -599,6 +787,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private javax.swing.JPanel mainMenuPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton mpBackButton;
+    private javax.swing.JButton mpDirectConnectButton;
     private javax.swing.JButton mpHostButton;
     private javax.swing.JButton mpJoinButton;
     private javax.swing.JButton mpRefreshButton;
@@ -608,34 +797,318 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private javax.swing.JScrollPane namesScrollPane;
     private javax.swing.JPanel panelLabel;
     private javax.swing.JPanel panelMainMenu;
+    private javax.swing.JProgressBar progressL;
+    private javax.swing.JProgressBar progressM;
+    private javax.swing.JProgressBar progressS1;
+    private javax.swing.JProgressBar progressS2;
+    private javax.swing.JProgressBar progressXL;
+    private javax.swing.JProgressBar progressXS1;
+    private javax.swing.JProgressBar progressXS2;
+    private javax.swing.JButton readyButton;
     private javax.swing.JTextField sessionNameTextField;
     private javax.swing.JPanel singleplayerPanel;
-    private javax.swing.JButton spFiguresButton;
     // End of variables declaration//GEN-END:variables
-
+    //</editor-fold>
     
-    public void buttonPressField1(ActionEvent e) {
-         String ch = (e.getActionCommand());
-       System.out.println(ch);
-       p1.shot(Character.getNumericValue(ch.charAt(0)),Character.getNumericValue(ch.charAt(2)));
-       p1.printField();
-      pos[Character.getNumericValue(ch.charAt(0))][Character.getNumericValue(ch.charAt(2))].setBackground(Color.red);
-    }
-    public void buttonPressField2(ActionEvent e) {
-         String ch = (e.getActionCommand());
-       System.out.println(ch);
-       p2.shot(Character.getNumericValue(ch.charAt(0)),Character.getNumericValue(ch.charAt(2)));
-       p2.printField();
-       
-       
-      
+    private void initProgressBars() {
+        progressXL.setMinimum(0);
+        progressXL.setMaximum(5);
+        progressL.setMinimum(0);
+        progressL.setMaximum(4);
+        progressM.setMinimum(0);
+        progressM.setMaximum(3);
+        progressS1.setMinimum(0);
+        progressS1.setMaximum(2);
+        progressS2.setMinimum(0);
+        progressS2.setMaximum(2);
+        progressXS1.setMinimum(0);
+        progressXS1.setMaximum(1);
+        progressXS2.setMinimum(0);
+        progressXS2.setMaximum(1);
     }
     
+    /**
+     *  This Method processes all inputs given for the opposing players ParkingLot
+     * @param e event passed from the pressed Field button on the opposing players ParkingLot
+     */
+    private void buttonPressField1(ActionEvent e) {
+        String ch = (e.getActionCommand());
+        int x = Character.getNumericValue(ch.charAt(0));
+        int y = Character.getNumericValue(ch.charAt(2));
         
+        System.out.println(ch);
+        p1.shot(x,y);
+        p1.printField();    //for debugging
+        pos1[x][y].setEnabled(false);
+        
+        updateFields(p1, pos1);
+    }
+
+    /**
+     *  This Method processes all inputs given for the local players ParkingLot
+     * @param e event passed from the pressed Field button on the local players ParkingLot
+     */
+    private void buttonPressField2(ActionEvent e) {
+        String ch = (e.getActionCommand());
+        int x = Character.getNumericValue(ch.charAt(0));
+        int y = Character.getNumericValue(ch.charAt(2));
+        
+        System.out.println(ch);
+        if(p2.getState(x, y) == 0) {
+            p2.placeFigure(x, y);            
+        } else {
+            p2.placeEmpty(x, y);
+        }
+        updateFields(p2, pos2);
+        findBlocks();
+        checkProgress();
+        updateProgress();
+        p2.printField();    //for debugging
+        
+        if(getNumberOccupied() == 18) {
+            lockEmptyFields();
+        } else {
+            unlockEmptyFields();
+        }
+    }
     
-//    public String getPos(){
-//    return ch;
-//    }
+    private void updateFields(ParkingLot p, Field[][] pos) {
+    int a = 0;    
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                a = p.getState(i, j);
+                
+                switch(a) {
+                    case 0: pos[i][j].setBackground(Color.LIGHT_GRAY);
+                            break;
+                    case 1: pos[i][j].setBackground(Color.BLUE);
+                            break;
+                    case 2: pos[i][j].setBackground(Color.DARK_GRAY);
+                            break;
+                    case 3: pos[i][j].setBackground(Color.RED);
+                            break;
+                }
+            }
+        }
+    }
+    
+    private void findBlocks() { //Backtracking Algorithm to to define blocks of connected tiles.
+        blockArray = new ArrayList();
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < 10; i++) {                
+                if(!isBlacklisted(blockArray, i, j) && p2.getState(i, j) == 2) {
+                    Block block = new Block();                
+                    algo(i, j, 'r', block);
+                    blockArray.add(block); 
+                }
+                
+            }
+        }
+    }
+    
+    private boolean algo(int x, int y, char direction, Block block) {
+        boolean flag = false;
+        if(x >= 0 && x <= 9 && y >= 0 && y <= 9) {  //prevents algorithm from overflowing the grid
+            for(int i = 0; i < block.getXcoords().length; i++) {    //checks if coordinates have already been added to block
+                if(block.getXcoords()[i] == x && block.getYcoords()[i] == y) {
+                    flag = true;
+                }
+            }
+            
+                    if(p2.getState(x, y) == 2) {  //check if field is relevant
+                        if(!flag) { //prevents endless rechecking of coordinates
+                            block.add(x,y); //add coordinates to block
+                            if(direction != 'l' && algo(x+1, y, 'r', block)) {  //try to continue right
+
+                                return true;
+                            }
+                            if(direction != 'u' && algo(x, y+1, 'd', block)) {  //try to continue down
+
+                                return true;
+                            }
+                            if(direction != 'r' && algo(x-1, y, 'l', block)) {  //try to continue left
+
+                                return true;
+                            }
+                            if(direction != 'd' && algo(x, y-1, 'u', block)) {  //try to continue up
+
+                                return true;
+                            }
+                            // if no direction works:
+                            return false;
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
+                    
+        } else {
+            return false;
+        }
+    }
+    
+    private boolean isBlacklisted(ArrayList<Block> blocks, int x, int y) {  //checks if coordinate is already part of an existing Block
+        boolean flag = false;
+        for(Block b: blocks) {
+            for(int i = 0; i < b.getXcoords().length; i++) {
+                if(b.getXcoords()[i] == x && b.getYcoords()[i] == y) {
+                    flag = true;
+                }
+            }
+        }
+        return flag;
+    }
+    
+    private int getNumberOccupied() {
+        int counter = 0;
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < 10; i++) {
+                if(p2.getState(i, j) == 2)
+                    counter++;
+            }
+        }
+        return counter;
+    }
+    
+    private void lockAllFields(Field[][] pos) {
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < 10; i++) {                
+                pos[i][j].setEnabled(false);                                   
+            }
+        }
+    }
+    
+    private void unlockAllFields(Field[][] pos) {
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < 10; i++) {
+                pos[i][j].setEnabled(true);
+            }
+        }
+    }
+    
+    private void lockEmptyFields() {
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < 10; i++) {
+                if(p2.getState(i, j) != 2) {
+                    pos2[i][j].setEnabled(false);
+                }                    
+            }
+        }
+    }
+    
+    private void unlockEmptyFields() {
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < 10; i++) {
+                if(!pos2[i][j].isEnabled()) {
+                    pos2[i][j].setEnabled(true);
+                }                    
+            }
+        }
+    }
+    
+    private void checkProgress() {
+        //resets block assignment
+        fXL.clearBlock();
+        fL.clearBlock();
+        fM.clearBlock();
+        fS1.clearBlock();
+        fS2.clearBlock();
+        fXS1.clearBlock();
+        fXS2.clearBlock();
+        //assigns blocks to figures
+        for(int i = 1; i <= 5; i++) {
+            for(Block b : blockArray) {
+                if(b.isValid() && b.getLength() == i) {
+                    switch(i) {                    
+                    case 1:
+                        if(fXS1.getLength() == i && fXS1.getProgress() != i) {  //Assigns block to figure if the match is perfect
+                            fXS1.assignBlock(b);
+                            break;
+                        }
+                        if(fXS2.getLength() == i && fXS2.getProgress() != i) {  //Assigns block to figure if the match is perfect and the first figure already has a block
+                            fXS2.assignBlock(b);
+                            break;
+                        } else {
+                            //skips to next case;
+                        }                            
+                    case 2:
+                        if(fS1.getLength() == i && fS1.getProgress() != i) {    
+                            fS1.assignBlock(b);
+                            break;
+                        }
+                        if(fS2.getLength() == i && fS1.getProgress() != i) {
+                            fS2.assignBlock(b);
+                            break;
+                        }
+                        if(!fS1.hasAssigned()) {    //Assigns smaller block if figure has not been assigned one yet
+                            fS1.assignBlock(b);
+                            break;
+                        }
+                        if(!fS2.hasAssigned()) {    //Assigns smaller block if figure has not been assigned one yet and previous figure already has a block
+                            fS2.assignBlock(b);
+                            break;
+                        } else {
+                            //skips to next case;
+                        }                        
+                    case 3:
+                        if(fM.getLength() == i && fM.getProgress() != i) {    
+                            fM.assignBlock(b);
+                            break;
+                        }
+                        if(!fM.hasAssigned()) {
+                            fM.assignBlock(b);
+                            break;
+                        } else {
+                            //skips to next case;
+                        }
+                    case 4:
+                        if(fL.getLength() == i && fL.getProgress() != i) {    
+                            fL.assignBlock(b);
+                            break;
+                        }
+                        if(!fL.hasAssigned()) {
+                            fL.assignBlock(b);
+                            break;
+                        } else {
+                            //skips to next case;
+                        }
+                    case 5:
+                        if(fXL.getLength() == i && fXL.getProgress() != i) {    
+                            fXL.assignBlock(b);
+                            break;
+                        }
+                        if(!fXL.hasAssigned()) {
+                            fXL.assignBlock(b);
+                            break;
+                        } else {
+                            break;  // block could not be assigned
+                        }
+                            
+                    }
+                }
+            }
+        }
+    }
+    
+    private void updateProgress() {
+        progressXS1.setValue(fXS1.getProgress());
+        progressXS2.setValue(fXS2.getProgress());
+        progressS1.setValue(fS1.getProgress());
+        progressS2.setValue(fS2.getProgress());
+        progressM.setValue(fM.getProgress());
+        progressL.setValue(fL.getProgress());
+        progressXL.setValue(fXL.getProgress());
+    }
+    
+    private boolean validateIP(String address) {
+        final Pattern IPADDRESS_PATTERN = Pattern.compile(
+		"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+        return IPADDRESS_PATTERN.matcher(address).matches();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

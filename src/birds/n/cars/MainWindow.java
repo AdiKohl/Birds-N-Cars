@@ -459,6 +459,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         ipTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ipTextField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        sessionNameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sessionNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 sessionNameTextFieldKeyReleased(evt);
@@ -500,6 +501,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ipAddressInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ipAddressInput.setText("000.000.000.000");
 
         javax.swing.GroupLayout multiplayerMenuLayout = new javax.swing.GroupLayout(multiplayerMenu);
@@ -696,6 +698,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             lockAllFields(pos2);
             unlockAllFields(pos1);
             readyButton.setEnabled(false);
+            sender.sendData(ipAddressInput.getText(), p2);  //debug
         }
     }//GEN-LAST:event_readyButtonActionPerformed
 
@@ -845,6 +848,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         pos1[x][y].setEnabled(false);
         
         updateFields(p1, pos1);
+        sender.sendData(ipAddressInput.getText(), p1);  //debug
     }
 
     /**

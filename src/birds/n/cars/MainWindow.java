@@ -848,7 +848,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         p1.printField();    //for debugging
         pos1[x][y].setEnabled(false);
         
-        updateFieldsFriendly(p1, pos1);
+        updateFieldsOpponent(p1, pos1);
         sender.sendData(ipAddressInput.getText(), p1);  //debug
     }
 
@@ -892,6 +892,26 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
                     case 1: pos[i][j].setBackground(Color.BLUE);
                             break;
                     case 2: pos[i][j].setBackground(Color.DARK_GRAY);
+                            break;
+                    case 3: pos[i][j].setBackground(Color.RED);
+                            break;
+                }
+            }
+        }
+    }
+    
+    private void updateFieldsOpponent(ParkingLot p, Field[][] pos) {
+    int a = 0;    
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                a = p.getState(i, j);
+                
+                switch(a) {
+                    case 0: pos[i][j].setBackground(Color.LIGHT_GRAY);
+                            break;
+                    case 1: pos[i][j].setBackground(Color.BLUE);
+                            break;
+                    case 2: //do nothing
                             break;
                     case 3: pos[i][j].setBackground(Color.RED);
                             break;

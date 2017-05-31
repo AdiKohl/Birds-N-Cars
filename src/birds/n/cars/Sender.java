@@ -28,8 +28,9 @@ public class Sender {
      * Serializes and sends a ParkingLot instance to the specified IP address
      * @param address host address to send to
      * @param content the ParkingLot object that is to be sent
+     * @return returns true if packet was sent
      */
-    public void sendData(String address, ParkingLot content) {
+    public boolean sendData(String address, ParkingLot content) {
         
         byte[] arrayData = null;
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
@@ -43,15 +44,17 @@ public class Sender {
             byteStream.close();
             } catch (IOException e) {
                 System.err.println("Error: " + e.getMessage());
+                return false;
             }        
  
         try(DatagramSocket socket = new DatagramSocket()) {
             InetAddress iAddr = InetAddress.getByName(address);           
             DatagramPacket packet = new DatagramPacket(arrayData, arrayData.length, iAddr, portNumber);
             socket.send(packet);
-            
+            return true;
         } catch(Exception e) {
             System.err.println("Error: " + e.getMessage());
-        }
+            return false;
+        }        
     }
 }

@@ -8,6 +8,8 @@ package birds.n.cars;
 import java.awt.CardLayout;
 import java.net.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -24,8 +26,11 @@ public class Receiver implements Runnable{
     ParkingLot p2;
     ParkingLot px;
     
+    String targetAddress;
+    String receivedAddress;
     int port;
-    boolean invitationPending = false;    
+    boolean invitationPending = false;
+    boolean inGame = false;
     boolean initDone = false;   //used to determine which ParkingLot object is used. Switches after the first transmission is received.
     
     
@@ -53,7 +58,7 @@ public class Receiver implements Runnable{
     public void run() { //very gud programming incoming
         while (true) {            
                 
-                if(initDone) {  //replaces ParkingLot object with modified version of it self
+                if(initDone) {  //replaces a ParkingLot object with received version of it self depending on whether the intial ParkingLot instances have already been exchanged or not using initDone
                     px = p2;
                 } else {
                     px = p1;                    
@@ -64,29 +69,32 @@ public class Receiver implements Runnable{
             try {    //TODO rework connection procedure logic thingy
                 packet = new DatagramPacket(arrayData = new byte[1024], arrayData.length);
                 socket.receive(packet);
-                if (!initDone && invitationPending) {
+                
+                if (invitationPending && compareIP(targetAddress, packet.getAddress().getHostAddress())) { //reception of answer
                     gotoPlayField();
-                    initDone = true;
+                    inGame = true;
                     invitationPending = false;
                     continue;                    
-                } else if (!initDone) {
+                }
+                if (!inGame) {  //reception of invite and user response
                     int response = MainWindow.connectDialog(packet.getAddress().getCanonicalHostName() + " (" + packet.getAddress().getHostAddress() + ")");
                     if (response == 0) {
                         Sender s = new Sender(port);
                         ParkingLot dummy = new ParkingLot();
                         s.sendData(packet.getAddress().getHostAddress(), dummy);
+                        receivedAddress = packet.getAddress().getHostAddress();
+                        inGame = true;
                         gotoPlayField();
-                        initDone = true;
-                        
+                        continue;
                     } else { // if user declines -> response == 1
                         continue;
                     }
                 }
                 System.out.println("packet received"); //debug
                 ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(arrayData));
-                px.readExternal(objectInputStream);                
+                px.readExternal(objectInputStream);
                 
-                px.printField(); //debug
+                initDone = true;
             } catch(IOException | ClassNotFoundException e) {
                 System.err.println("Error: " + e.getMessage());
             }
@@ -100,6 +108,23 @@ public class Receiver implements Runnable{
     private void gotoPlayField() {
         CardLayout card = (CardLayout)p.getLayout();
         card.show(p, "singleplayerCard");
+    }
+    
+    private boolean compareIP(String ip1, String ip2) {
+        try {
+            return InetAddress.getByName(ip1).equals(InetAddress.getByName(ip2));
+        } catch (UnknownHostException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public void setTargetIP(String address) {
+        targetAddress = address;
+    }
+    
+    public String getReceivedAddress() {
+        return receivedAddress;
     }
 }
     

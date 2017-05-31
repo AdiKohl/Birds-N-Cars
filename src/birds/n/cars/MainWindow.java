@@ -698,7 +698,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             lockAllFields(pos2);
             unlockAllFields(pos1);
             readyButton.setEnabled(false);
-            sender.sendData(ipAddressInput.getText(), p2);  //debug
+            sender.sendData(receiver.getReceivedAddress(), p2);
             updateFieldsFriendly(p2, pos2);
         }
     }//GEN-LAST:event_readyButtonActionPerformed
@@ -714,6 +714,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     private void mpDirectConnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpDirectConnectButtonActionPerformed
         if(validateIP(ipAddressInput.getText())) {
             ParkingLot dummy = new ParkingLot();
+            receiver.setTargetIP(ipAddressInput.getText());
+            receiver.setInvitationPendingFlag();
             sender.sendData(ipAddressInput.getText(), dummy);            
         } else {
             JOptionPane.showMessageDialog(MainWindow.this, "Invalid IP Address", "Incompetence Error",JOptionPane.WARNING_MESSAGE);
@@ -849,7 +851,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         pos1[x][y].setEnabled(false);
         
         updateFieldsOpponent(p1, pos1);
-        sender.sendData(ipAddressInput.getText(), p1);  //debug
+        sender.sendData(receiver.getReceivedAddress(), p1);  //debug
     }
 
     /**

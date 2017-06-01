@@ -303,32 +303,32 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         jPanel_Player2.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Parking"));
         jPanel_Player2.setLayout(new java.awt.GridLayout(10, 10));
 
-        fleetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Fleet"));
+        fleetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Your Vehicles"));
         fleetPanel.setForeground(new java.awt.Color(240, 240, 240));
 
         progressM.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel4.setText("Destroyer");
+        jLabel4.setText("Car");
 
         progressS1.setForeground(new java.awt.Color(0, 204, 0));
 
         progressXL.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel5.setText("Submarine");
+        jLabel5.setText("Moped");
 
         progressL.setForeground(new java.awt.Color(0, 204, 0));
 
         progressXS1.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel1.setText("Aircraft Carrier");
+        jLabel1.setText("Truck");
 
-        jLabel2.setText("Battleship");
+        jLabel2.setText("Bus");
 
         progressS2.setForeground(new java.awt.Color(0, 204, 0));
 
         progressXS2.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel3.setText("Cruiser");
+        jLabel3.setText("Van");
 
         readyButton.setText("Ready!");
         readyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -357,7 +357,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
                     .addComponent(progressS2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(progressXS2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(progressM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fleetPanelLayout.setVerticalGroup(
             fleetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,12 +409,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(jPanel_Player2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(jPanel_Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_Player2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fleetPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
+        fleetPanel.getAccessibleContext().setAccessibleName("Your Vehicles");
         fleetPanel.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout singleplayerPanelLayout = new javax.swing.GroupLayout(singleplayerPanel);
@@ -547,7 +548,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
                     .addComponent(labelIP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(multiplayerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mpRefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(mpRefreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ipTextField))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -605,7 +606,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
                 .addComponent(hostList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mpBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         mainPanel.add(multiplayerPanel, "multiplayerCard");
@@ -851,6 +852,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         pos1[x][y].setEnabled(false);
         
         updateFieldsOpponent(p1, pos1);
+        updateFieldsFriendly(p2, pos2);
+        if(looser(p1)){
+            JOptionPane.showMessageDialog(MainWindow.this, "YOU WIN", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        }
+        if(looser(p2)){
+            JOptionPane.showMessageDialog(MainWindow.this, "YOU LOOOS", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        }
         sender.sendData(receiver.getReceivedAddress(), p1);  //debug
     }
 
@@ -1154,6 +1162,22 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     @Override
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public boolean looser(ParkingLot myP){
+        int myCounter = 0;
+        boolean gameStatus=false;
+        for(int i=0; i<10; i++){
+            for(int j=0; j<10;j++){
+                if((myCounter+=myP.getState(j,i))>2){
+                     myCounter+=myP.getState(j,i);
+                }
+            }
+        }
+        if(myCounter==54){
+        gameStatus=true;
+        }
+        return gameStatus;
     }
             
 }

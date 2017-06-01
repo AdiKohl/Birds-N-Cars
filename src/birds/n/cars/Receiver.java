@@ -71,6 +71,7 @@ public class Receiver implements Runnable{
                 socket.receive(packet);
                 
                 if (invitationPending && compareIP(targetAddress, packet.getAddress().getHostAddress())) { //reception of answer
+                    receivedAddress = packet.getAddress().getHostAddress();
                     gotoPlayField();
                     inGame = true;
                     invitationPending = false;

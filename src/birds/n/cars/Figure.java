@@ -1,9 +1,10 @@
 /*
  * You have 10 different types of figures
+ * 1 x truck, size = 5;
  * 1 x bus, size = 4
- * 2 x van, size = 3
- * 3 x car, size = 2
- * 4 x bicycle, size = 1
+ * 1 x van, size = 3
+ * 2 x car, size = 2
+ * 2 x moped, size = 1
  */
 package birds.n.cars;
 

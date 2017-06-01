@@ -851,6 +851,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         pos1[x][y].setEnabled(false);
         
         updateFieldsOpponent(p1, pos1);
+        updateFieldsFriendly(p2, pos2);
         sender.sendData(receiver.getReceivedAddress(), p1);  //debug
     }
 

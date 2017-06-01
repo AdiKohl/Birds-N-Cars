@@ -299,8 +299,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel_Player1" pref="400" max="32767" attributes="0"/>
-                              <Component id="jPanel_Player2" alignment="0" pref="400" max="32767" attributes="0"/>
+                              <Component id="jPanel_Player1" max="32767" attributes="0"/>
+                              <Component id="jPanel_Player2" alignment="0" max="32767" attributes="0"/>
                               <Component id="fleetPanel" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="124" max="32767" attributes="0"/>
@@ -372,7 +372,7 @@
                                   <Component id="progressXS2" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="progressM" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -668,7 +668,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="mpRefreshButton" pref="25" max="32767" attributes="0"/>
+                                  <Component id="mpRefreshButton" max="32767" attributes="0"/>
                                   <Component id="ipTextField" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>

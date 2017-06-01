@@ -1169,7 +1169,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         boolean gameStatus=false;
         for(int i=0; i<10; i++){
             for(int j=0; j<10;j++){
-            myCounter=myP.getState(j,i);
+                if((myCounter+=myP.getState(j,i))>2){
+                     myCounter+=myP.getState(j,i);
+                }
             }
         }
         if(myCounter==54){

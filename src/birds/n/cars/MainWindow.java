@@ -1164,7 +1164,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public boolean looser(ParkingLot myP){
+    private boolean looser(ParkingLot myP){
         int myCounter = 0;
         boolean gameStatus=false;
         for(int i=0; i<10; i++){
@@ -1177,6 +1177,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         if(myCounter==54){
         gameStatus=true;
         }
+        System.out.println(myCounter);
         return gameStatus;
     }
             

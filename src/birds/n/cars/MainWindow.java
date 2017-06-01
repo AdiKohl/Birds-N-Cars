@@ -1175,6 +1175,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         if(myCounter==54){
         gameStatus=true;
         }
+       System.out.println(myCounter);
         return gameStatus;
     }
             

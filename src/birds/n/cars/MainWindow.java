@@ -853,6 +853,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
         
         updateFieldsOpponent(p1, pos1);
         updateFieldsFriendly(p2, pos2);
+        if(looser(p1)){
+            JOptionPane.showMessageDialog(MainWindow.this, "YOU WIN", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        }
+        if(looser(p2)){
+            JOptionPane.showMessageDialog(MainWindow.this, "YOU LOOOS", "Sorry :(",JOptionPane.WARNING_MESSAGE);
+        }
         sender.sendData(receiver.getReceivedAddress(), p1);  //debug
     }
 
@@ -1156,6 +1162,20 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener  {
     @Override
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public boolean looser(ParkingLot myP){
+        int myCounter = 0;
+        boolean gameStatus=false;
+        for(int i=0; i<10; i++){
+            for(int j=0; j<10;j++){
+            myCounter=myP.getState(j,i);
+            }
+        }
+        if(myCounter==54){
+        gameStatus=true;
+        }
+        return gameStatus;
     }
             
 }

@@ -28,6 +28,7 @@ public class Receiver implements Runnable{
     
     String targetAddress;
     String receivedAddress;
+    String Adress;
     int port;
     boolean invitationPending = false;
     boolean inGame = false;
@@ -70,8 +71,8 @@ public class Receiver implements Runnable{
                 packet = new DatagramPacket(arrayData = new byte[1024], arrayData.length);
                 socket.receive(packet);
                 
-                if (invitationPending && compareIP(targetAddress, packet.getAddress().getHostAddress())) { //reception of answer
-                    receivedAddress = packet.getAddress().getHostAddress();
+                if (invitationPending && compareIP(Adress, packet.getAddress().getHostAddress())) { //reception of answer
+                    Adress = packet.getAddress().getHostAddress();
                     gotoPlayField();
                     inGame = true;
                     invitationPending = false;
@@ -83,7 +84,7 @@ public class Receiver implements Runnable{
                         Sender s = new Sender(port);
                         ParkingLot dummy = new ParkingLot();
                         s.sendData(packet.getAddress().getHostAddress(), dummy);
-                        receivedAddress = packet.getAddress().getHostAddress();
+                        Adress = packet.getAddress().getHostAddress();
                         inGame = true;
                         gotoPlayField();
                         continue;
@@ -121,11 +122,11 @@ public class Receiver implements Runnable{
     }
 
     public void setTargetIP(String address) {
-        targetAddress = address;
+        Adress = address;
     }
     
     public String getReceivedAddress() {
-        return receivedAddress;
+        return Adress;
     }
 }
     
